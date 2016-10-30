@@ -30,7 +30,7 @@ public class Tablero {
     public void nuevaTarea(Tarea t){
         tareas.put(0, t);
     }
-    /*
+    
     public void cambiarEstado(Usuario u){
          if (u instanceof Empleado) {
             
@@ -43,8 +43,8 @@ public class Tablero {
                 tareas.put(3, this.tareas.get(2));
                 tareas.remove(2, this.tareas.get(2));
             }
-        }*/          
-        /*
+        }         
+        
         else if(u instanceof Jefe){
             if(doingDesarrollo==false && doingPrueba==false && done==false) doingDesarrollo=true;
             else if(doingDesarrollo==true && doingPrueba==false && done==false) doingPrueba=true;
@@ -52,11 +52,11 @@ public class Tablero {
         }
     }
     
-    /*public Tarea getTarea(int idTarea){
+    public Tarea getTarea(int idTarea){
         
         for(int i=0; i<tareas.size(); i++){
             if(tareas[i].)
         }
-    }*/
+    }
     
 }
