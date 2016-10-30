@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+Copyright (C) 2016 Pivotal Software, Inc.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html>
+    <head>
+        <title>Client</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+        <script src="app.js"></script>
+
+    </head>
+
+   <body style="background-color:Moccasin;">
+
+        <h1 style="text-align:center;color: SaddleBrown;font-size:300%;">Bienvenido a ManageBoard</h1>
+        <h1 style="text-align:center;color: SaddleBrown;">Ingrese sus datos</h1>
+
+        <form>
+            Nombre:<br>
+            <input id="nombre" type="text" name="Nombre">
+            <br>
+            Cedula:<br>
+            <input type="number" name="cedula">
+
+            <select id="tipo" style="text-align: left">
+                <option value="jefe">Soy un jefe</option>
+                <option value="empleado">Soy un empleado</option>
+            </select>
+
+            <h2 style="color:SaddleBrown;">Habilidades técnicas:</h2>
+
+
+            <input id="desarrollo" type="checkbox" name="habilidad" value="Desarrollo"> Desarrollo de software<br>
+            <input id="proyectos" type="checkbox" name="habilidad" value="Proyectos"> Administracion de proyectos<br>
+            <input id="finanzas" type="checkbox" name="habilidad" value="Finanzas"> Finanzas<br>
+            <input id="diseñoWeb" type="checkbox" name="habilidad" value="DiseñoWeb"> Diseño de paginas web<br>
+            <input id="marketing" type="checkbox" name="habilidad" value="Marketing"> Marketing<br>
+            <input id="ventas" type="checkbox" name="habilidad" value="Ventas"> Ventas<br>
+
+            <input type="submit"  onclick="nuevoUsuario()" >
+
+        </form>   
+        <!--
+        <button type="button" onclick="pageJefe()" >Soy un Jefe</button>
+        <button type="button" onclick="pageEmpleado()">Soy un Empleado</button>-->
+    </body>
+
+</html>
