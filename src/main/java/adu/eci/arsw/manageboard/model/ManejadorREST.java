@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.arsw.manageboard.services;
+package adu.eci.arsw.manageboard.model;
 
 import edu.eci.arsw.manageboard.logic.Tarea;
+import edu.eci.arsw.manageboard.services.Manejador;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/tablero")
-public class Controller {
+public class ManejadorREST {
      @Autowired 
      Manejador manejador=null;
 
@@ -37,7 +38,7 @@ public class Controller {
         
 
     } catch (Exception ex) {
-        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(ManejadorREST.class.getName()).log(Level.SEVERE, null, ex);
         return new ResponseEntity<>("Error no platos",HttpStatus.NOT_FOUND);
     }  
   }

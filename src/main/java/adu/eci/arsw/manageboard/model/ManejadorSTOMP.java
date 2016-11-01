@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.arsw.manageboard.logic;
+package adu.eci.arsw.manageboard.model;
 
 /**
  *
  * 
  */
-public class ApiRest {
+public class ManejadorSTOMP {
     
 }
