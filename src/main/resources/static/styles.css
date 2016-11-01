@@ -1,1 +1,89 @@
+#nombre{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
 
+#cedula{
+    width: 100%;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#Cabeza {
+    color: Moccasin;
+    text-align: center;
+    font-size:200%;
+    background-color: #b50707;
+}
+
+#tipo{
+    font-size: 16px;
+}
+
+header, footer {
+    colclear: left;
+    color:white;
+    background-color: #b50707;
+    clear: left;
+    text-align: left;
+}
+
+//--------------
+
+#menuBar {
+ 	  font-size:100%;
+    background-color:#b50707;
+    color:white;
+    padding-bottom: 30px;
+}
+
+.button {
+    background-color: #b50707;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+    float: left;
+}
+.button:hover {
+    background-color: #d02929;
+}
+
+div.container {
+    width: 100%;
+}
+
+
+nav {
+    float: left;
+    max-width: 160px;
+    margin: 0;
+    padding: 1em;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+			
+nav ul a {
+    text-decoration: none;
+}
+
+#datosPer {
+    margin-left: 200px;
+    border-left: 2px  ;
+    padding: 1em;
+    overflow: hidden;
+}
