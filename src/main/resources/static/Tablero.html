@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+	<title>Tablero</title>
+</head>
+<body>
+    
+<table align="center" border="3" cellpadding="1" cellspacing="1" style="height:600;width:70%;">
+	<caption><span style="font-size:36px;"><span dir="ltr" lang="es"><span style="color:#000080;"><strong>Board</strong></span></span></span></caption>
+	<thead>
+		<tr>
+			<th scope="col"><span style="color:#000080;">TO DO</span></th>
+			<th scope="col">
+			<p><span style="color:#000080;">DOING&nbsp;</span></p>
+
+			<p><font color="#000080">DESARROLLO</font></p>
+			</th>
+			<th scope="col">
+			<p><span style="color:#000080;">DOING</span></p>
+
+			<p><span style="color:#000080;">PRUEBAS</span></p>
+			</th>
+			<th scope="col"><span style="color:#000080;">DONE</span></th>
+		</tr>
+	</thead>
+        <div class="verticalLineDe1">
+        </div>
+        
+        <div class="verticalLineDe2">
+        </div>
+        
+        <div class="verticalLineDe2">
+        </div>
+        
+        <div class="verticalLineiz1">
+        </div>
+        
+        <div class="verticalLineiz2">
+        </div>
+</table>
+
+        <div id="menuder">
+            Tareas disponibles:   
+            <ul id="tarea" onchange="actualizarTareasDisponibles()">
+            </ul>
+        </div>
+    
+<p><input name="CrearTarea" type="button" value="Crear tarea" /></p>
+</body>
+</html>

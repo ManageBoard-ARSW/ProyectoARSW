@@ -10,7 +10,7 @@ package edu.eci.arsw.manageboard.logic;
  *
  *
  */
-class Tarea {
+public class Tarea {
     private String[] comentarios;
     private String[] criterios;
     private String nombre;
