@@ -5,37 +5,71 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-     <head>
-         <title>Empleado</title>
-         <meta charset="UTF-8">
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link rel="stylesheet" type="text/css" href="styles.css">
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
-         <script src="app.js"></script>
+    <head>
+        <title>Empleado</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+        <script src="app.js"></script>
 
-     </head>
-     <body >
-         <div class="flex-container">
-             <header>
-                 <div id="menuBar">
-                     <button onclick="" class="button">Perfil</button>
-                     <button onclick="" class="button">Board</button>
-                 </div>
-             </header>
-             <!--va la imagen -->
-             <nav>
-                 <ul>
-                     <li><a href="#">London</a></li>
+    </head>
+    <body >
+        <div class="flex-container">
+            <header>
+                <div id="menuBar"> 
+                    <button onclick="" class="button">Perfil</button>
+                    <button onclick="" class="button">Board</button>
+                </div>
+            </header>
+            <!--Configuracion parte izquierda -->
+            <nav>
 
-                 </ul>
-             </nav>
+                <img id="imag" src=""> <!--En src va la URI de la imagen-->
 
-             <div id="datosPer">
-                 <h1>London</h1>
-                 <p>London is the capital city of England. It is the most populous city in the  United Kingdom, ws.</p>
+                <ul id="tareas">
+                    <li id="#home">Home</li>
+                    <li id="#news">News</li>
+                    <li id="#home">Home</li>
+                    <li id="#home">Home</li>
+                    <li id="#news">News</li>
+                    <li id="#home">Home</li>
+                </ul>
 
-             </div>
-         </div>
-     </body>
+                <ul id="tareas"  >
+                    <li id="#home">Home</li>
+                    <li id="#news">News</li>
+                    <li id="#home">Home</li>
+                    <li id="#home">Home</li>
+                    <li id="#news">News</li>
+                    <li id="#home">Home</li>
+                </ul>
+            </nav>
+
+
+            <div id="datosPer">
+                <h1>Nombre del Empleado</h1>
+                <h3>Nombre del proyecto actual</h3>
+                <h4>Nombre de la Empresa</h4>
+            </div>
+
+            <h1 id="tituloHabilidades"> Habilidades</h1>
+
+            <table id="hab">
+                <tr>
+                    <td>
+                <li> habilidad 1</li>
+                <li> habilidad 2</li>
+                </td>
+
+                <td>
+                <li> habilidad 3</li>
+                <li> habilidad 4</li>
+                </td>
+                </tr>   
+            </table>
+
+        </div>
+    </body>
 </html>
