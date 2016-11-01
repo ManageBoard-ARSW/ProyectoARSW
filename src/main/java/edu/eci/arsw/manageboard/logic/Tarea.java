@@ -33,9 +33,13 @@ public class Tarea {
     public int getId(){
         return idTarea;
     }
+    
+    void agregarCriterios(String[] c) {
+        this.criterios = c;
+    }
 
-    void agregarComentario(String[] Comentarios) {
-        this.comentarios = comentarios;
+    void agregarComentario(String[] c) {
+        this.comentarios = c;
     }
 
     public String[] getComentarios() {
@@ -48,6 +52,10 @@ public class Tarea {
 
     public boolean isAprobado() {
         return aprobado;
+    }
+
+    public void setAprobado(boolean aprobado) {
+        this.aprobado = aprobado;
     }
     
     public boolean getToDo(){

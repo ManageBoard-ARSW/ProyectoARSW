@@ -32,22 +32,22 @@ public class Tablero {
     }
     
     //Falta buscar id de la tarea
-    public void cambiarEstado(Usuario u) {
+    public void cambiarEstado(Usuario u, int idTarea) {
         if (u instanceof Empleado) {
             if(tareas.containsKey(0)){
-                tareas.put(1, this.tareas.get(getTarea(0)));
-                tareas.remove(0, this.tareas.get(this.getTarea(0)));
-                this.getTarea(0).setToDo(false);
+                tareas.put(1, this.tareas.get(getTarea(idTarea)));
+                tareas.remove(0, this.tareas.get(this.getTarea(idTarea)));
+                this.getTarea(idTarea).setToDo(false);
             }
             
         } else if (u instanceof Jefe) {
             if (tareas.containsKey(2)) {
-                if (tareas.get(getTarea(0)).isAprobado()) {
-                    tareas.put(3, this.tareas.get(getTarea(0)));
-                    tareas.remove(2, this.tareas.get(getTarea(0)));
+                if (tareas.get(getTarea(idTarea)).isAprobado()) {
+                    tareas.put(3, this.tareas.get(getTarea(idTarea)));
+                    tareas.remove(2, this.tareas.get(getTarea(idTarea)));
                 } else {
-                    tareas.put(1, this.tareas.get(getTarea(0)));
-                    tareas.remove(2, this.tareas.get(getTarea(0)));
+                    tareas.put(1, this.tareas.get(getTarea(idTarea)));
+                    tareas.remove(2, this.tareas.get(getTarea(idTarea)));
                 }
             }
         }

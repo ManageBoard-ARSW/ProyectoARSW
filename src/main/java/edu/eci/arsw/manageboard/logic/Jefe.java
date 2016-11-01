@@ -25,20 +25,21 @@ class Jefe extends Usuario{
     
     }
     
-    private void asignarTarea(int id){
-        proyectos.get(id).cambiarEstado(this);
+    private void asignarTarea(int idTablero, int idTarea){
+        proyectos.get(idTablero).cambiarEstado(this, idTarea);
     }
     
     private void consultarPerfilUsuario(){
     
     }
     
-    private void aprobarCulminacionTarea(){
-        //mover tarea de Doing a Done y califica tarea
+    private void aprobarCulminacionTarea(int idTablero, int idTarea){
+        proyectos.get(idTablero).getTarea(idTarea).setAprobado(true);
+        proyectos.get(idTablero).cambiarEstado(this, idTarea);
     }
     
-    private void agregarCriteriosTarea(){
-    
+    private void agregarCriteriosTarea(int idTablero, int idTarea, String[] criterios){
+        proyectos.get(idTablero).getTarea(idTarea).agregarCriterios(criterios);
     }
     
 }

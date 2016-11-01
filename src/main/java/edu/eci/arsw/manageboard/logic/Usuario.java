@@ -21,9 +21,8 @@ public class Usuario {
         this.habilidades=h;
     }
     
-    public void moverTarea(int id){
-        //modificacion del tablero, solo la puede hacer quien este haciendo la tarea
-        proyectos.get(id).cambiarEstado(this);
+    public void moverTarea(int idTablero, int idTarea){
+        proyectos.get(idTablero).cambiarEstado(this, idTarea);
     }
     
     public void crearTarea(int idTablero, int idTarea, String n){
@@ -35,7 +34,7 @@ public class Usuario {
         proyectos.get(idTablero).getTarea(idtarea).agregarComentario(Comentarios);
     }
     
-    public void consultarTareasSinRealizar(){
-        
+    public void consultarTareasSinRealizar(int idTablero){
+        proyectos.get(idTablero).tareasSinRealizar();
     }
 }
