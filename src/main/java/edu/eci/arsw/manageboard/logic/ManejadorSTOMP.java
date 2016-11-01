@@ -7,7 +7,7 @@ package edu.eci.arsw.manageboard.logic;
 
 /**
  *
- * @author nicolas
+ * 
  */
 public class ManejadorSTOMP {
     

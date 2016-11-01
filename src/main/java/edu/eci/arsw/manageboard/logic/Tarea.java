@@ -5,11 +5,10 @@
  */
 package edu.eci.arsw.manageboard.logic;
 
-import static com.oracle.nio.BufferSecrets.instance;
 
 /**
  *
- * @author nicolas
+ *
  */
 class Tarea {
     private String[] comentarios;
@@ -17,33 +16,45 @@ class Tarea {
     private String nombre;
     private int idTarea;
     private int calificacion=0;
+    private boolean toDo=true;
     private boolean aprobado=false;
-    private boolean doingDesarrollo;
-    private boolean doingPrueba;
-    private boolean done; //3 false esta en To Do, doingDesarrollo=true y las otras F esta en Doing
     
-    public Tarea(String[] cm, String n, int id){
-        this.comentarios=cm;
-        this.nombre=n;
-        this.idTarea=id;
-        this.doingDesarrollo=false;
-        this.doingPrueba=false;
-        this.done=false;
+    public Tarea(String[] c, String n, int id){
+        this.criterios = c;
+        this.nombre = n;
+        this.idTarea = id;
     }
     
     public Tarea(String n, int id){
-        this.nombre=n;
-        this.idTarea=id;
-        this.doingDesarrollo=false;
-        this.doingPrueba=false;
-        this.done=false;
+        this.nombre = n;
+        this.idTarea = id;
     }
     
     public int getId(){
         return idTarea;
     }
+
+    void agregarComentario(String[] Comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public String[] getComentarios() {
+        return comentarios;
+    }
+
+    public String[] getCriterios() {
+        return criterios;
+    }
+
+    public boolean isAprobado() {
+        return aprobado;
+    }
     
-    public Tarea getTarea(int idtarea){
-        return 
-    } 
+    public boolean getToDo(){
+        return toDo;
+    }
+    
+    public void setToDo(boolean t){
+        toDo = t;
+    }
 }

@@ -7,7 +7,7 @@ package edu.eci.arsw.manageboard.logic;
 
 /**
  *
- * @author nicolas
+ * 
  */
 class Empleado extends Usuario{
     private int calificacion=5; // calificacion promedio

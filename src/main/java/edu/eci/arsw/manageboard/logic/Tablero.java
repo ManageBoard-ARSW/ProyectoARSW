@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
- * @author nicolas
+ * 
  */
 public class Tablero {
     public ArrayList<Empleado> empleados;
@@ -31,32 +31,51 @@ public class Tablero {
         tareas.put(0, t);
     }
     
-    public void cambiarEstado(Usuario u){
-         if (u instanceof Empleado) {
-            
-         
-        }else if(u instanceof Jefe){
-            if (tareas.containsKey(0)) {
-                tareas.put(1, this.tareas.get(0).);
-                tareas.remove(0, this.tareas.get(0));
-            }else if(tareas.containsKey(2)){
-                tareas.put(3, this.tareas.get(2));
-                tareas.remove(2, this.tareas.get(2));
+    //Falta buscar id de la tarea
+    public void cambiarEstado(Usuario u) {
+        if (u instanceof Empleado) {
+            if(tareas.containsKey(0)){
+                tareas.put(1, this.tareas.get(getTarea(0)));
+                tareas.remove(0, this.tareas.get(this.getTarea(0)));
+                this.getTarea(0).setToDo(false);
             }
-        }         
-        
-        else if(u instanceof Jefe){
-            if(doingDesarrollo==false && doingPrueba==false && done==false) doingDesarrollo=true;
-            else if(doingDesarrollo==true && doingPrueba==false && done==false) doingPrueba=true;
             
+        } else if (u instanceof Jefe) {
+            if (tareas.containsKey(2)) {
+                if (tareas.get(getTarea(0)).isAprobado()) {
+                    tareas.put(3, this.tareas.get(getTarea(0)));
+                    tareas.remove(2, this.tareas.get(getTarea(0)));
+                } else {
+                    tareas.put(1, this.tareas.get(getTarea(0)));
+                    tareas.remove(2, this.tareas.get(getTarea(0)));
+                }
+            }
         }
     }
     
     public Tarea getTarea(int idTarea){
-        
-        for(int i=0; i<tareas.size(); i++){
-            if(tareas[i].)
-        }
+        Tarea task=null;
+        Iterator it = tareas.entrySet().iterator();
+        ConcurrentHashMap.Entry t = (ConcurrentHashMap.Entry) it.next();
+        while (it.hasNext()){
+            Tarea tar = (Tarea)t.getValue();
+            if(tar.getId()==idTarea){
+                task = tar;
+            }
+        }    
+        return task;
     }
     
+    public ArrayList<Tarea> tareasSinRealizar() {
+        ArrayList<Tarea> ta = null;
+        Iterator it = tareas.entrySet().iterator();
+        ConcurrentHashMap.Entry t = (ConcurrentHashMap.Entry) it.next();
+        while (it.hasNext()) {
+            Tarea tar = (Tarea) t.getValue();
+            if (tar.getToDo()) {
+                ta.add(tar);
+            }
+        }
+        return ta;
+    }
 }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author nicolas
+ * 
  */
 public class Usuario {
     public String nombre;
@@ -26,17 +26,16 @@ public class Usuario {
         proyectos.get(id).cambiarEstado(this);
     }
     
-    public void crearTarea(int id, String n){
-        Tarea t= new Tarea(n,id);
-        proyectos.get(id).nuevaTarea(t);
+    public void crearTarea(int idTablero, int idTarea, String n){
+        Tarea t= new Tarea(n,idTarea);
+        proyectos.get(idTablero).nuevaTarea(t);
     }
     
-    public void comentarTarea(){
-    
+    public void comentarTarea(int idTablero, int idtarea, String[] Comentarios){
+        proyectos.get(idTablero).getTarea(idtarea).agregarComentario(Comentarios);
     }
     
     public void consultarTareasSinRealizar(){
-    
+        
     }
-    
 }
