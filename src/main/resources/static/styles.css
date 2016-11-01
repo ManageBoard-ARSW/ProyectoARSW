@@ -37,7 +37,7 @@ header, footer {
     text-align: left;
 }
 
-//--------------
+
 
 #menuBar {
  	  font-size:100%;
@@ -88,59 +88,3 @@ nav ul a {
     padding: 1em;
     overflow: hidden;
 }
-
-div.verticalLineDe1 {
-    width: 0.2%; 
-    background-color: black;
-    height: 82%;
-    float: left;
-    position:absolute;
-    right:15.45%;
-    top:130px;
-}
-div.verticalLineDe2{
-    width: 0.2%; 
-    background-color: black;
-    height: 82%;
-    float: left;
-    position:absolute;
-    right:27.2%;
-    top:130p
-}
-div.verticalLineDe3{
-    width: 0.2%; 
-    background-color: black;
-    height: 82%;
-    float: left;
-    position:absolute;
-    right:45.1%;
-    top:130px
-}
-div.verticalLineiz1{
-    width: 0.2%; 
-    background-color: black;
-    height: 82%;
-    float: left;
-    position:absolute;
-    right:71.5%;
-    top:130px 
-}
-
-div.verticalLineiz2{
-    width: 0.2%; 
-    background-color: black;
-    height: 82%;
-    float: left;
-    position:absolute;
-    right:84.4%;
-    top:130px
-}
-#menuder{
-    float:left;
-    position:absolute;
-    right: 3.5%;
-    top: 150px;
-    font-size: 20px;
-
-}
-
