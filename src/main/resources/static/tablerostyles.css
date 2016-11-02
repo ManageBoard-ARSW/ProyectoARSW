@@ -15,4 +15,15 @@
     background-color:#b50707;
     color:white;
     padding-bottom: 30px;}
-
+#tableros{
+  width: 170%;
+    font-family: cursive;
+    font-size: 20px;
+}
+#menuder{
+    float:left;
+    position:absolute;
+    left:80%;
+    top: 195px;
+    font-size: 20px; 
+}

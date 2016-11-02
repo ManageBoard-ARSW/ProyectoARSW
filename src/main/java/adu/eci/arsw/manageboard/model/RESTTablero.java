@@ -5,8 +5,9 @@
  */
 package adu.eci.arsw.manageboard.model;
 
+import edu.eci.arsw.manageboard.logic.Tablero;
 import edu.eci.arsw.manageboard.logic.Tarea;
-import edu.eci.arsw.manageboard.services.ManejadorTareas;
+import edu.eci.arsw.manageboard.services.ManejadorTablero;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,27 +24,23 @@ import org.springframework.web.bind.annotation.RestController;
  * @author nicolasguzmanp
  */
 @RestController
-@RequestMapping("/tareas")
-public class RESTTareas {
+@RequestMapping("/tablero")
+public class RESTTablero {
     
     @Autowired
-    ManejadorTareas manejador = null;
-    
-    @Autowired
-    SimpMessagingTemplate msgt;
-    
+    ManejadorTablero manejador = null;
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> manejadorGetTarea() {
-        
+    public ResponseEntity<?> manejadorGetTablero() {
+        System.out.println("entro al get ...............................");
         try {
             //obtener datos que se enviarán a través del API
-            List<Tarea> tareas = manejador.getTareas();
+            List<Tablero> tableros = manejador.getTablero();
 
-            return new ResponseEntity<>(tareas, HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(tableros, HttpStatus.ACCEPTED);
 
         } catch (Exception ex) {
-            Logger.getLogger(RESTTareas.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error no tareas", HttpStatus.NOT_FOUND);
+            Logger.getLogger(RESTTablero.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error no tablero", HttpStatus.NOT_FOUND);
         }
     }
 }

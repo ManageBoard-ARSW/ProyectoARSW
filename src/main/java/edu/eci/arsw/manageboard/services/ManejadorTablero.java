@@ -13,24 +13,31 @@ import java.util.LinkedList;
 import java.util.List;
 
 import java.util.concurrent.ArrayBlockingQueue;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Owner
  */
+@Service
+public class ManejadorTablero {
+    public List<Tablero> tableros;
+    
+    public ManejadorTablero() {
+        tableros=new LinkedList<>();
+        cargarTableros(this);
 
-public class ManejadorTareas {
-    public List<Tarea> tareas;
+    }
     
-    public ManejadorTareas() {
+    public List<Tablero> getTablero() {
+        return tableros;
+    }
 
+    private void cargarTableros(ManejadorTablero mt) {
+        Tablero t=new Tablero(12, "tablero1");
+        tableros.add(t);
+        System.out.println(tableros);
     }
     
-    public List<Tarea> getTareas() {
-        return tareas;
-    }
-    
-    private void registrarTarea(Tarea t) {
-    tareas.add(t);
-    }
+
 }

@@ -21,13 +21,19 @@ and open the template in the editor.
                 <button onclick="" class="button">Perfil</button>
                 <button onclick="" class="button">Board</button>
             </div>
-         
+            <div id ="menuder">
+   
+                <select id="tableros" onchange="cambiarTablero(this.value)" >
+                         <option value="" selected="selected">tableros</option>
+                 </select>
+                    <button onclick="actualizartableros()">Actualizar</button>
+            </div>
             <div style="text-align:center;">
                 <table border="3" style="border: 3px solid #B40404;">
                 <tr>
                     <td><strong>To do</strong></td>
-                    <td><strong>Doing </strong></td>
-                    <td><strong>Doing</strong></td>
+                    <td><strong>Doing Developing</strong></td>
+                    <td><strong>Doing Testing</strong></td>
                     <td><strong>Done</strong></td>
                 </tr>
                 <tr>
@@ -48,6 +54,7 @@ and open the template in the editor.
                    </td>
                 </tr>   
             </table>
+                
             </div>
         </header>
          </div>
