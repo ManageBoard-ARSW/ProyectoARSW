@@ -30,16 +30,15 @@ public class Usuario {
         proyectos.get(idTablero).cambiarEstado(this, idTarea);
     }
     
-    public void crearTarea(int idTablero, int idTarea, String n){
-        Tarea t= new Tarea(n,idTarea);
-        proyectos.get(idTablero).nuevaTarea(t);
+    public Tarea crearTarea(int idTablero, int idTarea, String n){
+        return proyectos.get(idTablero).nuevaTarea(n, idTarea);
     }
     
     public void comentarTarea(int idTablero, int idtarea, String[] Comentarios){
         proyectos.get(idTablero).getTarea(idtarea).agregarComentario(Comentarios);
     }
     
-    public void consultarTareasSinRealizar(int idTablero){
-        proyectos.get(idTablero).tareasSinRealizar();
+    public ArrayList<Tarea> consultarTareasSinRealizar(int idTablero){
+        return proyectos.get(idTablero).tareasSinRealizar();
     }
 }

@@ -27,11 +27,13 @@ public class Tablero {
     }
     
       
-    public void nuevaTarea(Tarea t){
+    public Tarea nuevaTarea(String n, int id){
+        Tarea t= new Tarea(nombre, id);
         tareas.put(0, t);
+        return t;
     }
     
-    //Falta buscar id de la tarea
+    
     public void cambiarEstado(Usuario u, int idTarea) {
         if (u instanceof Empleado) {
             if(tareas.containsKey(0)){

@@ -9,7 +9,7 @@ package edu.eci.arsw.manageboard.logic;
  *
  * @author nicolas
  */
-class Jefe extends Usuario{
+public class Jefe extends Usuario{
     
     
     public Jefe(String n, String[] h, int c){
@@ -21,24 +21,24 @@ class Jefe extends Usuario{
         proyectos.add(tab);
     }
     
-    private void consultarEstadisticas(){
+    public void consultarEstadisticas(){
     
     }
     
-    private void asignarTarea(int idTablero, int idTarea){
+    public void asignarTarea(int idTablero, int idTarea){
         proyectos.get(idTablero).cambiarEstado(this, idTarea);
     }
     
-    private void consultarPerfilUsuario(){
+    public void consultarPerfilUsuario(){
     
     }
     
-    private void aprobarCulminacionTarea(int idTablero, int idTarea){
+    public void aprobarCulminacionTarea(int idTablero, int idTarea){
         proyectos.get(idTablero).getTarea(idTarea).setAprobado(true);
         proyectos.get(idTablero).cambiarEstado(this, idTarea);
     }
     
-    private void agregarCriteriosTarea(int idTablero, int idTarea, String[] criterios){
+    public void agregarCriteriosTarea(int idTablero, int idTarea, String[] criterios){
         proyectos.get(idTablero).getTarea(idTarea).agregarCriterios(criterios);
     }
     

@@ -19,6 +19,10 @@ public class Tarea {
     private boolean toDo=true;
     private boolean aprobado=false;
     
+    public Tarea(){
+    
+    }
+    
     public Tarea(String[] c, String n, int id){
         this.criterios = c;
         this.nombre = n;
@@ -32,6 +36,10 @@ public class Tarea {
     
     public int getId(){
         return idTarea;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
     
     void agregarCriterios(String[] c) {
