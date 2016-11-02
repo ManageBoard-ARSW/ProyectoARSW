@@ -1,5 +1,6 @@
 var stompClient = null;
 var puntos=[];
+var usuario=null;
 function connect() {
     var socket = new SockJS('/stompendpoint');
     stompClient = Stomp.over(socket);
@@ -53,7 +54,9 @@ function nuevoUsuario() {
     var usuario=$("#tipo").val();
     if (usuario == "jefe") {
         //envio de la informacion con el JSON
+        
         window.open("jefe.html");
+        
     } else {
         window.open("empleado.html");
     }
@@ -68,13 +71,19 @@ function cargarDatos(){
     $("input:checkbox[name=habilidades]:checked").each(function () {
         seleccionadas.push($(this).val());
     });
-    
+    var user=({"nombre":nombre, "habilidades":saleccionadas, "cedula":cedula});
     $.ajax({
         type: "POST",
-        url: url,
-        data: data,
+        url: "/usuario/",
+        data: user,
     });
 }
+
+function getUser(cedula){
+    return $.get("/usuario/"+cedula).then(function(data){
+        usuario=data;
+    });
+};
 
 
 

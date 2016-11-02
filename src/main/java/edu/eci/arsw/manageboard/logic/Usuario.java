@@ -17,6 +17,9 @@ public class Usuario {
     public String[] habilidades;
     public int cedula;
     
+    public Usuario(){
+    }
+    
     public Usuario(String n, String[] h, int c){
         this.nombre=n;
         this.habilidades=h;
