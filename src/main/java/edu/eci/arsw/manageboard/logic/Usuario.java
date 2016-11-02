@@ -15,10 +15,12 @@ public class Usuario {
     public String nombre;
     public ArrayList<Tablero> proyectos=null;
     public String[] habilidades;
+    public int cedula;
     
-    public Usuario(String n, String[] h){
+    public Usuario(String n, String[] h, int c){
         this.nombre=n;
         this.habilidades=h;
+        this.cedula=c;
     }
     
     public void moverTarea(int idTablero, int idTarea){

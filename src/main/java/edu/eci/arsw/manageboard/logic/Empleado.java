@@ -13,8 +13,8 @@ class Empleado extends Usuario{
     private int calificacion=5; // calificacion promedio
     
     
-    public Empleado(String n, String[] h){
-        super(n,h);
+    public Empleado(String n, String[] h, int c){
+        super(n,h,c);
     }
     
     

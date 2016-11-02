@@ -57,8 +57,26 @@ function nuevoUsuario() {
     } else {
         window.open("empleado.html");
     }
-    
+    cargarDatos();
 }
+
+function cargarDatos(){
+    var nombre=$("#nombre").val();
+    var cedula=$("#cedula").val();
+    //var habilidades=document.getElementsByTagName("input").checked;
+    var seleccionadas = new Array();
+    $("input:checkbox[name=habilidades]:checked").each(function () {
+        seleccionadas.push($(this).val());
+    });
+    
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+    });
+}
+
+
 
 $(document).ready(
         function () {

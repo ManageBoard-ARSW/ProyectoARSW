@@ -12,8 +12,8 @@ package edu.eci.arsw.manageboard.logic;
 class Jefe extends Usuario{
     
     
-    public Jefe(String n, String[] h){
-        super(n,h);
+    public Jefe(String n, String[] h, int c){
+        super(n,h,c);
     }
     
     public void crearTablero(int id, String nombre){
