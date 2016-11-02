@@ -9,53 +9,48 @@ and open the template in the editor.
 	<title>Tablero</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="stylesheet" type="text/css" href="tablerostyles.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
-        <script src="app.js"></script>
+        <script src="appboard.js"></script>
 </head>
-<body>
-    
-<table align="center" border="3" cellpadding="1" cellspacing="1" style="height:600;width:70%;">
-	<caption><span style="font-size:36px;"><span dir="ltr" lang="es"><span style="color:#000080;"><strong>Board</strong></span></span></span></caption>
-	<thead>
-		<tr>
-			<th scope="col"><span style="color:#000080;">TO DO</span></th>
-			<th scope="col">
-			<p><span style="color:#000080;">DOING&nbsp;</span></p>
-
-			<p><font color="#000080">DESARROLLO</font></p>
-			</th>
-			<th scope="col">
-			<p><span style="color:#000080;">DOING</span></p>
-
-			<p><span style="color:#000080;">PRUEBAS</span></p>
-			</th>
-			<th scope="col"><span style="color:#000080;">DONE</span></th>
-		</tr>
-	</thead>
-        <div class="verticalLineDe1">
-        </div>
-        
-        <div class="verticalLineDe2">
-        </div>
-        
-        <div class="verticalLineDe2">
-        </div>
-        
-        <div class="verticalLineiz1">
-        </div>
-        
-        <div class="verticalLineiz2">
-        </div>
-</table>
-
-        <div id="menuder">
-            Tareas disponibles:   
-            <ul id="tarea" onchange="actualizarTareasDisponibles()">
-            </ul>
-        </div>
-    
-<p><input name="CrearTarea" type="button" value="Crear tarea" /></p>
+<body >  
+     <div class="flex-container">
+        <header>
+            <div id="menuBar">
+                <button onclick="" class="button">Perfil</button>
+                <button onclick="" class="button">Board</button>
+            </div>
+         
+            <div style="text-align:center;">
+                <table border="3" style="border: 3px solid #B40404;">
+                <tr>
+                    <td><strong>To do</strong></td>
+                    <td><strong>Doing </strong></td>
+                    <td><strong>Doing</strong></td>
+                    <td><strong>Done</strong></td>
+                </tr>
+                <tr>
+                    <td> <canvas id="myCanvas" width="250" height="1000" style="border:3px solid #F8E0E0;">
+                     </canvas>
+                    </td>
+                    <td>
+                     <canvas id="myCanvas2" width="250" height="1000" style="border:3px solid #F8E0E0;">
+                     </canvas>
+                 </td>
+                 <td>
+                     <canvas id="myCanvas3" width="250" height="1000" style="border:3px solid #F8E0E0;">
+                     </canvas>
+                  </td>
+                  <td>
+                     <canvas id="myCanvas4" width="250" height="1000" style="border:3px solid #F8E0E0;">
+                     </canvas>
+                   </td>
+                </tr>   
+            </table>
+            </div>
+        </header>
+         </div>
 </body>
 </html>
+

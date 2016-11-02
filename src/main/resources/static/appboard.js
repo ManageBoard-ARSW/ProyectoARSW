@@ -36,5 +36,5 @@ actualizarTareasDisponibles = function(){
   };
 function tablero() {
     
-        window.open("jefe.html");
+        window.open("tablero.html");
     } 
