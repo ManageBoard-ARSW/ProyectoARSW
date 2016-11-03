@@ -6,7 +6,8 @@
 package edu.eci.arsw.manageboard.services;
 
 import edu.eci.arsw.manageboard.logic.Usuario;
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  */
 public class ManejadorUsuario {
     
-    public ArrayList<Usuario> empleados= new ArrayList<>();
+    public List<Usuario> empleados= new LinkedList<>();
     
     public void registarUsuario(Usuario user){
         empleados.add(user);
