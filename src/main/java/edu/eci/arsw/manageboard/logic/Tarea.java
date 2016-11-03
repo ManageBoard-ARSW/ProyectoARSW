@@ -20,6 +20,7 @@ public class Tarea {
     private int calificacion=0;
     private boolean toDo=true;
     private boolean aprobado=false;
+    private String estado;
     
     public Tarea(){
         comentarios=new ArrayList<>();
@@ -31,6 +32,31 @@ public class Tarea {
         this.idTarea = id;
         comentarios=new ArrayList<>();
         criterios=new ArrayList<>();
+        this.estado="toDo";
+    }
+
+    public int getIdTarea() {
+        return idTarea;
+    }
+
+    public void setIdTarea(int idTarea) {
+        this.idTarea = idTarea;
+    }
+
+    public int getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(int calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
     
     public int getId(){

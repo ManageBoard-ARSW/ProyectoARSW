@@ -35,8 +35,40 @@ public class ManejadorTablero {
 
     private void cargarTableros(ManejadorTablero mt) {
         Tablero t=new Tablero(12, "tablero1");
+        t.nuevaTarea("fgxd", 1);
+        t.nuevaTarea("ghgh", 5);
         tableros.add(t);
         System.out.println(tableros);
+    }
+
+    public Tablero getTableroId(Integer id) {
+        Tablero res=null;
+        for (Tablero tablero : tableros) {
+            if (tablero.idTablero==id) {
+                res=tablero;
+                break;
+            }
+        }return res;
+    }
+
+    public List<Tarea> getTareasToDoId(int id) {
+        Tablero tab=this.getTableroId(id);
+        return tab.TareasTodDo();
+    }
+
+    public List<Tarea> getTareasDoingDesId(int id) {
+        Tablero tab=this.getTableroId(id);
+        return tab.TareasDoingDes();
+    }
+
+    public List<Tarea> getTareasDoingPId(int id) {
+        Tablero tab=this.getTableroId(id);
+        return tab.TareasDoingP();    
+    }
+
+    public List<Tarea> getTareasDoneId(int id) {
+        Tablero tab=this.getTableroId(id);
+        return tab.TareasDone();
     }
     
 

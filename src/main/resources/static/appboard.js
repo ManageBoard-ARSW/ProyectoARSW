@@ -1,7 +1,11 @@
 var tareasDisp=[];
 var tablerosDisp=[];
 idTableroActual=-1;
-tableroActual= new tablero();
+tableroActual= null;
+ToDo=[];
+doingD=[];
+doingP=[];
+done=[];
 actualizarTareasDisponibles = function(){
     funtion_get_all_tasks().then(funcionP).then(function(){
         $("#contenido").droppable({
@@ -18,14 +22,14 @@ actualizarTareasDisponibles = function(){
         });
     });
 };
-
+/*
     funtion_get_all_tasks=function(){
-          return $.get("/tablero").then(function(task){
+          return $.get("/tableros").then(function(task){
 
             tareasDispDisp=plates;
     });
   };
-
+*/
 
     funcionP=function(){
         for (i = 0; i < tareasDisp.length; i++){
@@ -39,31 +43,23 @@ actualizarTareasDisponibles = function(){
   };
 function tablero() {
     
-        window.open("tablero.html");
+        window.open("tableroView.html");
     } 
 cambiarTablero= function(id){
     idTableroActual=id;
     tableroActual =tablerosDisp[id];
     funcion_get(id);
-    
-    
 };
 actualizartableros= function(){
-    //get_all_boards();
+   
     getAllBoards();
 };
 getAllBoards=function(){
-     $.get("/tablero").then(function (tablero){
-         tablerosDisp=tableros;
-     });
-};
-get_all_boards=function(){
-    console.info($.get("/tablero"));
-    return $.get("/tablero").then(function(tablero){
+    return $.get("/tableros").then(function(tablero){
    
         console.info("entro get");
       
-        tablerosDisp=tableros;
+        tablerosDisp=tablero;
         var i = 0;
         var x = document.getElementById("tableros");
         var option;
@@ -75,26 +71,68 @@ get_all_boards=function(){
                 x.add(option);            
         }
         i=i+1;
-    }}
-);
+    }
+    });
 };
 
 funcion_get=function (id){
-    return $.get('/tablero/'+id).then(
+    return $.get('/tableros/'+id).then(
             function (data){
             tableroActual=data;
-            tablerosDisp[id]=tableroActual;
+            
             deleteTabla();
             llenarTabla();
-        }
-                );
+        });
 };
 deleteTabla =function (){
     var tabla=document.getElementById("tabla");
-    while(tabla.rows.length>1){
+    while(tabla.rows.length>0){
         tabla.deleteRow(1);
     }
 };
-llenartabla =function (){
+
+llenartabla = function(){
+    var i=0;
+    var renglon;
+    var todo;
+    var doingD;
+    var doingP;
+    var done;
     
+    var tabla=document.getElementById("tableros");
+    getTareasToDo(tableroActual.id);
+    getTareasDoingDes(tableroActual.id);
+    getTareasDoingP(tableroActual.id);
+    getTareasDone(tableroActual.id);
+    while(ToDo.length>i){
+        renglon=tabla.insertRow(i+1);
+        todo=renglon.insertCell(0);   
+        Todo.innerHTML=tableroActual.tareasDisp[i].nombre;
+        i=i+1;
+    }
+    
+};
+getTareasToDo=function(id){
+    return $.get('/tableros/'+id+'tareasToDo').then(
+            function (data){
+            ToDo=data;
+        });
+};
+getTareasDoingDes=function(id){
+    return $.get('/tableros/'+id+'tareasDoingDes').then(
+            function (data){
+            doingD=data;
+        });
+};
+getTareasDoingP=function(id){
+    return $.get('/tableros/'+id+'tareasDoingP').then(
+            function (data){
+            doingP=data;
+        });
+};
+getTareasDone=function(id){
+    return $.get('/tableros/'+id+'tareasDone').then(
+            function (data){
+            done=data;
+        });
 };

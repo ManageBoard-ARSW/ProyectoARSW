@@ -19,6 +19,7 @@ public class Tablero {
     public final ConcurrentHashMap<Integer, Tarea> tareas;
     public String nombre;
     public int idTablero;
+    public ArrayList<Tarea> tareasTablero;
     
     public Tablero(int id, String n){
          nombre=n;
@@ -57,6 +58,39 @@ public class Tablero {
                 }
             }
         }
+    }
+       
+    public ArrayList<Tarea> TareasTodDo(){
+        ArrayList<Tarea> res=new ArrayList<Tarea>();
+        for (Tarea re : tareasTablero) {
+            if(re.getEstado().equals("toDo")){
+                res.add(re);
+            }
+        }return res;
+    }
+     public ArrayList<Tarea> TareasDoingDes(){
+        ArrayList<Tarea> res=new ArrayList<Tarea>();
+        for (Tarea re : tareasTablero) {
+            if(re.getEstado().equals("doingDes")){
+                res.add(re);
+            }
+        }return res;
+    }
+      public ArrayList<Tarea> TareasDoingP(){
+        ArrayList<Tarea> res=new ArrayList<Tarea>();
+        for (Tarea re : tareasTablero) {
+            if(re.getEstado().equals("doingP")){
+                res.add(re);
+            }
+        }return res;
+    }
+       public ArrayList<Tarea> TareasDone(){
+        ArrayList<Tarea> res=new ArrayList<Tarea>();
+        for (Tarea re : tareasTablero) {
+            if(re.getEstado().equals("Done")){
+                res.add(re);
+            }
+        }return res;
     }
     
     public Tarea getTarea(int idTarea){
