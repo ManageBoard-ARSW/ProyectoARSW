@@ -6,6 +6,8 @@
 package edu.eci.arsw.manageboard.services;
 
 import edu.eci.arsw.manageboard.logic.Usuario;
+import org.springframework.stereotype.Service;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import java.util.List;
  *
  * @author nicolasguzmanp
  */
+@Service
 public class ManejadorUsuario {
     
     public List<Usuario> empleados= new LinkedList<>();

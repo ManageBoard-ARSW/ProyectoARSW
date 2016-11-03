@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package adu.eci.arsw.manageboard.model;
+package edu.eci.arsw.manageboard.controller;
 
 import edu.eci.arsw.manageboard.logic.Usuario;
 import edu.eci.arsw.manageboard.services.ManejadorUsuario;
@@ -29,10 +29,7 @@ public class RESTUsuario {
     @Autowired
     ManejadorUsuario manejador = null;
     
-    @Autowired
-    SimpMessagingTemplate msgt;
 
-    
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> registarUsuarios(@RequestBody Usuario u) {
         try {

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package adu.eci.arsw.manageboard.model;
+package edu.eci.arsw.manageboard.controller;
 
 import edu.eci.arsw.manageboard.logic.Tablero;
 import edu.eci.arsw.manageboard.logic.Tarea;
@@ -25,10 +25,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/tablero")
-public class RESTTablero {
+public class TableroController {
     
     @Autowired
     ManejadorTablero manejador = null;
+    
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> manejadorGetTablero() {
         System.out.println("entro al get ...............................");
@@ -39,7 +40,7 @@ public class RESTTablero {
             return new ResponseEntity<>(tableros, HttpStatus.ACCEPTED);
 
         } catch (Exception ex) {
-            Logger.getLogger(RESTTablero.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TableroController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error no tablero", HttpStatus.NOT_FOUND);
         }
     }
