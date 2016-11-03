@@ -35,17 +35,12 @@ public class RESTUsuario {
     
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> registarUsuarios(@RequestBody Usuario u) {
-        
         try {
-            //obtener datos que se enviarán a través del API
             manejador.registarUsuario(u);
-            msgt.convertAndSend("/topic/usuarios",u);
-
             return new ResponseEntity<>(u, HttpStatus.ACCEPTED);
-
         } catch (Exception ex) {
             Logger.getLogger(RESTUsuario.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error ya existe el usuario", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error, ya existe el usuario", HttpStatus.NOT_FOUND);
         }
     }
     
@@ -55,9 +50,7 @@ public class RESTUsuario {
         try {
             //obtener datos que se enviarán a través del API
             manejador.getUsuario(cedula);
-
             return new ResponseEntity<>(cedula, HttpStatus.ACCEPTED);
-
         } catch (Exception ex) {
             Logger.getLogger(RESTUsuario.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error no se encontro el usuario", HttpStatus.NOT_FOUND);
