@@ -5,6 +5,8 @@
  */
 package edu.eci.arsw.manageboard.logic;
 
+import java.util.ArrayList;
+
 /**
  *
  * 
@@ -15,6 +17,7 @@ public class Empleado extends Usuario{
     
     public Empleado(String n, String[] h, int c){
         super(n,h,c);
+        proyectos= new ArrayList<>();
     }
     
     

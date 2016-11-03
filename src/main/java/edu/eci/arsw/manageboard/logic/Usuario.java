@@ -13,17 +13,19 @@ import java.util.ArrayList;
  */
 public class Usuario {
     public String nombre;
-    public ArrayList<Tablero> proyectos=null;
+    public ArrayList<Tablero> proyectos;
     public String[] habilidades;
     public int cedula;
     
     public Usuario(){
+        proyectos= new ArrayList<>();
     }
     
     public Usuario(String n, String[] h, int c){
         this.nombre=n;
         this.habilidades=h;
         this.cedula=c;
+        proyectos= new ArrayList<>();
     }
     
     public void moverTarea(int idTablero, int idTarea){
@@ -34,8 +36,8 @@ public class Usuario {
         return proyectos.get(idTablero).nuevaTarea(n, idTarea);
     }
     
-    public void comentarTarea(int idTablero, int idtarea, String[] Comentarios){
-        proyectos.get(idTablero).getTarea(idtarea).agregarComentario(Comentarios);
+    public void comentarTarea(int idTablero, int idtarea, String Comentario){
+        proyectos.get(idTablero).getTarea(idtarea).agregarComentario(Comentario);
     }
     
     public ArrayList<Tarea> consultarTareasSinRealizar(int idTablero){

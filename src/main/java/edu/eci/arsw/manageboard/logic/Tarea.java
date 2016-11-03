@@ -5,14 +5,16 @@
  */
 package edu.eci.arsw.manageboard.logic;
 
+import java.util.ArrayList;
+
 
 /**
  *
  *
  */
 public class Tarea {
-    private String[] comentarios;
-    private String[] criterios;
+    private ArrayList<String> comentarios;
+    private ArrayList<String>criterios;
     private String nombre;
     private int idTarea;
     private int calificacion=0;
@@ -20,18 +22,15 @@ public class Tarea {
     private boolean aprobado=false;
     
     public Tarea(){
-    
-    }
-    
-    public Tarea(String[] c, String n, int id){
-        this.criterios = c;
-        this.nombre = n;
-        this.idTarea = id;
+        comentarios=new ArrayList<>();
+        criterios=new ArrayList<>();
     }
     
     public Tarea(String n, int id){
         this.nombre = n;
         this.idTarea = id;
+        comentarios=new ArrayList<>();
+        criterios=new ArrayList<>();
     }
     
     public int getId(){
@@ -42,19 +41,19 @@ public class Tarea {
         return nombre;
     }
     
-    void agregarCriterios(String[] c) {
-        this.criterios = c;
+    void agregarCriterios(String c) {
+        criterios.add(c);
     }
 
-    void agregarComentario(String[] c) {
-        this.comentarios = c;
+    void agregarComentario(String c) {
+        comentarios.add(c);
     }
 
-    public String[] getComentarios() {
+    public ArrayList<String> getComentarios() {
         return comentarios;
     }
 
-    public String[] getCriterios() {
+    public ArrayList<String> getCriterios() {
         return criterios;
     }
 
@@ -62,8 +61,8 @@ public class Tarea {
         return aprobado;
     }
 
-    public void setAprobado(boolean aprobado) {
-        this.aprobado = aprobado;
+    public void setAprobado(boolean a) {
+        this.aprobado = a;
     }
     
     public boolean getToDo(){

@@ -5,6 +5,8 @@
  */
 package edu.eci.arsw.manageboard.logic;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author nicolas
@@ -14,11 +16,13 @@ public class Jefe extends Usuario{
     
     public Jefe(String n, String[] h, int c){
         super(n,h,c);
+        proyectos= new ArrayList<>();
     }
     
-    public void crearTablero(int id, String nombre){
+    public Tablero crearTablero(int id, String nombre){
         Tablero tab = new Tablero(id, nombre);
         proyectos.add(tab);
+        return tab;
     }
     
     public void consultarEstadisticas(){
@@ -38,8 +42,8 @@ public class Jefe extends Usuario{
         proyectos.get(idTablero).cambiarEstado(this, idTarea);
     }
     
-    public void agregarCriteriosTarea(int idTablero, int idTarea, String[] criterios){
-        proyectos.get(idTablero).getTarea(idTarea).agregarCriterios(criterios);
+    public void agregarCriteriosTarea(int idTablero, int idTarea, String criterio){
+        proyectos.get(idTablero).getTarea(idTarea).agregarCriterios(criterio);
     }
     
 }

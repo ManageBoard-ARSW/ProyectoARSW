@@ -25,6 +25,10 @@ public class Tablero {
          idTablero=id;
          tareas= new ConcurrentHashMap<>();
     }
+
+    public Tablero() {
+        tareas= new ConcurrentHashMap<>();
+    }
     
       
     public Tarea nuevaTarea(String n, int id){
@@ -56,7 +60,7 @@ public class Tablero {
     }
     
     public Tarea getTarea(int idTarea){
-        Tarea task=null;
+        Tarea task=new Tarea();
         Iterator it = tareas.entrySet().iterator();
         ConcurrentHashMap.Entry t = (ConcurrentHashMap.Entry) it.next();
         while (it.hasNext()){
@@ -69,7 +73,7 @@ public class Tablero {
     }
     
     public ArrayList<Tarea> tareasSinRealizar() {
-        ArrayList<Tarea> ta = null;
+        ArrayList<Tarea> ta = new ArrayList<>();
         Iterator it = tareas.entrySet().iterator();
         ConcurrentHashMap.Entry t = (ConcurrentHashMap.Entry) it.next();
         while (it.hasNext()) {
