@@ -38,13 +38,11 @@ public class RESTUsuario {
     
     @RequestMapping(path ="/{cedula}", method = RequestMethod.PUT)
     public ResponseEntity<?> registarUsuarios(@PathVariable Integer cedula ,@RequestBody  Object json) throws ExcepcionUsuario{
-        System.out.println("Entro al PUT  ");
         LinkedHashMap<String,?> info=(LinkedHashMap) json;
         String ti=(String) info.get("tipo") ;
         String no=(String)info.get("nombre");
         ArrayList<String> h=(ArrayList)info.get("habili");
         manejador.registarUsuario(ti,no,cedula , h);
-        System.out.println("EL GET:  "+manejador.getUsuario(cedula));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     

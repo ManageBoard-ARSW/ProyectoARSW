@@ -3,13 +3,36 @@ var usuario=null;
 var usuarios = [];
 cedula=0;
 habilidades=[];
+    //console.info(text);
+    
+function connect() {
+    var socket = new SockJS('/stompendpoint');
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, function (frame) {
+        
+        stompClient.subscribe('/topic/', function (data) {
+            
+        });
+    });
+};
+
+function disconnect() {
+    if (stompClient != null) {
+        stompClient.disconnect();
+    }
+    setConnected(false);
+    console.log("Disconnected");
+}
 
 nuevoUsuario = function () {
     var tipo=$("#tipo").val();
-    cargarDatos(tipo);
+    var c=$("#cedula").val();
+    cargarDatos(tipo)
+    //pintaPerfil(c);
 };
 
-direccion = function(t){
+direccion = function(){
+    var t=$("#tipo").val();
     if (t == "jefe") {
         window.open("jefe.html");
     } else {
@@ -32,9 +55,14 @@ cargarDatos = function (u) {
 
 almacen = function(t, c, n, h){
     var text = {"tipo": t , "nombre":n , "habili":h };
-    //console.info(text);
     return $.ajax({url: "/usuario/"+c, 
          type: 'PUT', 
          data: JSON.stringify(text),
          contentType: "application/json"});
+};
+
+pintaPerfil = function(cedula){
+    $.get("/usuario/"+cedula,function(user){
+            console.info(user);
+    });
 }
