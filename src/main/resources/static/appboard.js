@@ -41,9 +41,20 @@ actualizarTareasDisponibles = function(){
      agregarTareaProyecto= function (p){
         p=new Tarea(tareasDisp[p].nombre,tareasDisp[p].idTarea);
   };
+function abrirPop() { 
+    open('popup.html','','top=250,left=250,width=250,height=200') ;
+   
+} 
+function cerrarPop() { 
+    datosPop();
+    close("popup.html") ; 
+}
+nuevaTarea = function datosPop(){
+    var pop=$("pop").val();
+    console.info(pop);
+};
 function tablero() {
-    
-        window.open("tableroView.html");
+        open("tableroView.html");
     } 
 cambiarTablero= function(id){
     idTableroActual=id;
@@ -51,7 +62,6 @@ cambiarTablero= function(id){
     funcion_get(id);
 };
 actualizartableros= function(){
-   
     getAllBoards();
 };
 getAllBoards=function(){

@@ -15,7 +15,7 @@ direccion = function(t){
     } else {
         window.open("empleado.html");
     }
-}
+};
 
 cargarDatos = function (u) {
     var cedula = $("#cedula").val();
@@ -37,4 +37,4 @@ almacen = function(t, c, n, h){
          type: 'PUT', 
          data: JSON.stringify(text),
          contentType: "application/json"});
-}
+};
