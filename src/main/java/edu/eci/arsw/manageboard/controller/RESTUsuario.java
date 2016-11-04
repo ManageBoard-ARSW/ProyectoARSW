@@ -9,6 +9,7 @@ import edu.eci.arsw.manageboard.config.ExcepcionUsuario;
 import edu.eci.arsw.manageboard.logic.Usuario;
 import edu.eci.arsw.manageboard.services.ManejadorUsuario;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +37,14 @@ public class RESTUsuario {
     SimpMessagingTemplate msgt;
     
     @RequestMapping(path ="/{cedula}", method = RequestMethod.PUT)
-    public ResponseEntity<?> registarUsuarios(@PathVariable Integer cedula ,@RequestBody String tipo , @RequestBody String nombre , @RequestBody ArrayList<String> carac) throws ExcepcionUsuario{
-        System.out.println("Entro al PUT");
-        //Usuario u= new Usuario(nombre, carac, cedula);
-        manejador.registarUsuario(tipo, nombre, cedula, carac);
-        //System.out.println(manejador.getUsuario(cedula));
+    public ResponseEntity<?> registarUsuarios(@PathVariable Integer cedula ,@RequestBody  Object json) throws ExcepcionUsuario{
+        System.out.println("Entro al PUT  ");
+        LinkedHashMap<String,?> info=(LinkedHashMap) json;
+        String ti=(String) info.get("tipo") ;
+        String no=(String)info.get("nombre");
+        ArrayList<String> h=(ArrayList)info.get("habili");
+        manejador.registarUsuario(ti,no,cedula , h);
+        System.out.println("EL GET:  "+manejador.getUsuario(cedula));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     

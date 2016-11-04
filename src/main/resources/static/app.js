@@ -27,13 +27,14 @@ cargarDatos = function (u) {
             habilidades.push(seleccion[i].value);
         }
     }
-    console.info(habilidades);
     almacen(u,cedula, nombre, habilidades);
 };
 
 almacen = function(t, c, n, h){
+    var text = {"tipo": t , "nombre":n , "habili":h };
+    //console.info(text);
     return $.ajax({url: "/usuario/"+c, 
          type: 'PUT', 
-         data: JSON.stringify([t,n,h]),
+         data: JSON.stringify(text),
          contentType: "application/json"});
 }
