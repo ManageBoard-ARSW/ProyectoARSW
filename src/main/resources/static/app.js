@@ -27,6 +27,7 @@ function disconnect() {
 nuevoUsuario = function () {
     var tipo=$("#tipo").val();
     var c=$("#cedula").val();
+    //direccion();
     cargarDatos(tipo);
     //pintaPerfil(c);
 };
@@ -34,9 +35,9 @@ nuevoUsuario = function () {
 direccion = function(){
     var t=$("#tipo").val();
     if (t == "jefe") {
-        window.open("jefe.html");
+        window.open("jefe.html","_self");
     } else {
-        window.open("empleado.html");
+        window.open("empleado.html", "_self");
     }
 };
 
@@ -58,7 +59,10 @@ almacen = function(t, c, n, h){
     return $.ajax({url: "/usuario/"+c, 
          type: 'PUT', 
          data: JSON.stringify(text),
-         contentType: "application/json"});
+         contentType: "application/json"}).then(direccion).then(direccion);
+         sessionStorage.setItem('nombre',cedula); 
+         sessionStorage.getItem('nombre').direccion();
+         
 };
 
 pintaPerfil = function(cedula){
