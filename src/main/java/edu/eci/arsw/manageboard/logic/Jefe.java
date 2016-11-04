@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Jefe extends Usuario{
     
     
-    public Jefe(String n, String[] h, int c){
+    public Jefe(String n, ArrayList<String> h, int c){
         super(n,h,c);
         proyectos= new ArrayList<>();
     }

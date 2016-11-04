@@ -14,14 +14,14 @@ import java.util.ArrayList;
 public class Usuario {
     public String nombre;
     public ArrayList<Tablero> proyectos;
-    public String[] habilidades;
+    public ArrayList<String>  habilidades;
     public int cedula;
     
     public Usuario(){
         proyectos= new ArrayList<>();
     }
     
-    public Usuario(String n, String[] h, int c){
+    public Usuario(String n, ArrayList<String> h, int c){
         this.nombre=n;
         this.habilidades=h;
         this.cedula=c;

@@ -15,7 +15,7 @@ public class Empleado extends Usuario{
     private int calificacion=5; // calificacion promedio
     
     
-    public Empleado(String n, String[] h, int c){
+    public Empleado(String n, ArrayList<String> h, int c){
         super(n,h,c);
         proyectos= new ArrayList<>();
     }

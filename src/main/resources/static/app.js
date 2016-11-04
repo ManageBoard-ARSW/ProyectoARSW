@@ -4,54 +4,36 @@ var usuarios = [];
 cedula=0;
 habilidades=[];
 
-function nuevoUsuario() {
-    var usuario=$("#tipo").val();
-    if (usuario == "jefe") {
-        //envio de la informacion con el JSON
-        
+nuevoUsuario = function () {
+    var tipo=$("#tipo").val();
+    cargarDatos(tipo);
+};
+
+direccion = function(t){
+    if (t == "jefe") {
         window.open("jefe.html");
-        
     } else {
-        
         window.open("empleado.html");
-        var seleccion=document.getElementsByClassName("formularioIni"); //Arreglo con las habilidades
-        for(var i=0; i < seleccion.length;i++){
-            if(seleccion[i].checked){
-                habilidades.push(seleccion[i].value);
-            }
-        }
-        console.info(habilidades);
- /*
-        document.getElementById("resultado").innerHTML=
-        
-      document.getElementsByClassName("formulario_check")[0].checked;*/
-       
     }
-    //cargarDatos();
 }
 
-cargarDatos = function(u){
-    var user=usuarios[u];
-    cedula=$("#cedula").val();
-    var nombre=$("#nombre").val();
-     var seleccionadas = new Array();
-        $("input:checkbox[name=habilidades]:checked").each(function () {
-            seleccionadas.push($(this).val());
-        });
-        alert(seleccionadas);
-    actualizador(user);
-    $("#board").append("<tr><td>"+user.nombre+"</td><td>"+user.cedula+"</td>"+"<td>"+user.habilidades+"</td</tr>");
+cargarDatos = function (u) {
+    var cedula = $("#cedula").val();
+    var nombre = $("#nombre").val();
+
+    var seleccion = document.getElementsByClassName("formularioIni"); //Arreglo con las habilidades
+    for (var i = 0; i < seleccion.length; i++) {
+        if (seleccion[i].checked) {
+            habilidades.push(seleccion[i].value);
+        }
+    }
+    console.info(habilidades);
+    almacen(u,cedula, nombre, habilidades);
 };
 
-actualizador = function (u) {
-     return $.ajax({url: "/usuario/"+cedula, 
+almacen = function(t, c, n, h){
+    return $.ajax({url: "/usuario/"+c, 
          type: 'PUT', 
-         data: JSON.stringify(u),
+         data: JSON.stringify([t,n,h]),
          contentType: "application/json"});
-};
-
-getUser = function(cedula){
-    return $.get("/usuario/"+cedula).then(function(data){
-        usuario=data;
-    });
-};
+}

@@ -5,7 +5,10 @@
  */
 package edu.eci.arsw.manageboard.services;
 
+import edu.eci.arsw.manageboard.logic.Empleado;
+import edu.eci.arsw.manageboard.logic.Jefe;
 import edu.eci.arsw.manageboard.logic.Usuario;
+import java.util.ArrayList;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -20,7 +23,17 @@ public class ManejadorUsuario {
     
     public List<Usuario> empleados= new LinkedList<>();
     
-    public void registarUsuario(Usuario user){
+    public void registarUsuario(String tipo, String nombre, int cc, ArrayList<String> h){
+        Usuario us;
+        if(tipo=="jefe"){
+            us=new Jefe(nombre, h, cc);
+        }else{
+            us=new Empleado(nombre, h, cc);
+        }
+        ingresoUsuario(us);
+    }
+    
+    public void ingresoUsuario(Usuario user){
         empleados.add(user);
     }
     

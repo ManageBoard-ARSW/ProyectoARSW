@@ -90,13 +90,6 @@ div.container {
     height:100%;
 }
 
-header, footer {
-    colclear: left;or: white;
-    background-color: black;
-    clear: left;
-    text-align: left;
-}
-
 nav {
     float: left;
     max-width: 200px;
