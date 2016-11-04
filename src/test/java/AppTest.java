@@ -5,6 +5,7 @@ import edu.eci.arsw.manageboard.logic.Usuario;
 import edu.eci.arsw.manageboard.logic.Jefe;
 import edu.eci.arsw.manageboard.logic.Empleado;
 import edu.eci.arsw.manageboard.services.ManejadorUsuario;
+import java.util.ArrayList;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -23,21 +24,31 @@ public class AppTest {
     @Test
     public void registrarUsuarioTest(){
         ManejadorUsuario manejador = new ManejadorUsuario();
-        String[] habilidades1={"Finanzas", "Marketing", "marketing", "Ventas", "Diseño de paginas web"};
-        String[] habilidades2={"Desarrollo de software", "Marketing", "Finanzas", "Diseño de paginas web"};
-        String[] habilidades3={"Desarrollo de software", "Diseño de paginas web"};
-        Jefe u1=new Jefe("Juan",habilidades1, 1026285452);
-        Empleado u2=new Empleado("Nicolas",habilidades2, 1072568752);
-        Empleado u3=new Empleado("Sebastian",habilidades3, 1010547896);
-        manejador.registarUsuario(u1);
-        manejador.registarUsuario(u2);
-        manejador.registarUsuario(u3);
+        ArrayList<String> habilidades1=new ArrayList<>();
+        ArrayList<String> habilidades2=new ArrayList<>();
+        ArrayList<String> habilidades3=new ArrayList<>();
+        habilidades1.add("Finanzas");
+        habilidades1.add("Marketing");
+        habilidades1.add("Ventas");
+        habilidades2.add("Finanzas");
+        habilidades2.add("Desarrollo de software");
+        habilidades2.add("Diseño de paginas web");
+        habilidades3.add("Desarrollo de software");
+        habilidades3.add("Diseño de paginas web");
+        manejador.registarUsuario("jefe", "Juan", 1026285452, habilidades1);
+        manejador.registarUsuario("empleado", "Sebastian", 1072568752, habilidades2);
+        manejador.registarUsuario("empleado", "Nicolas", 1010547896, habilidades3);
         assertTrue(manejador.empleados.size()==3);
     }
     
     @Test
     public void crearTableroTest(){
-        String[] habilidades={"Diseño paginas web", "Administracion de proyectos", "Marketing", "Desarrollo de sotware", "Finanzas"};
+        ArrayList<String> habilidades=new ArrayList<>();
+        habilidades.add("Diseño paginas web");
+        habilidades.add("Administracion de proyectos");
+        habilidades.add("Marketing");
+        habilidades.add("Desarrollo de sotware");
+        habilidades.add("Finanzas");
         Jefe j=new Jefe("Camila",habilidades, 123456789);
         j.crearTablero(0, "Proyecto FGPR");
         assertNotNull(j.proyectos);
@@ -50,7 +61,10 @@ public class AppTest {
         Tarea t3=new Tarea();
         Tarea t4=null;
         Tablero t= new Tablero();
-        String[] habilidades={"Marketing", "Ventas", "Administracion de proyectos"};
+        ArrayList<String> habilidades=new ArrayList<>();
+        habilidades.add("Marketing");
+        habilidades.add("Ventas");
+        habilidades.add("Administracion de proyectos");
         Jefe j=new Jefe("Andres",habilidades, 51964735);
         t=j.crearTablero(0, "Proyecto ARSW");
         t1=j.crearTarea(0, 0, "Pruebas");
@@ -67,7 +81,9 @@ public class AppTest {
     @Test
     public void consultarTareasSinRealizarTest(){
         Tablero t= new Tablero();
-        String[] habilidades={"Diseño paginas web", "Administracion de proyectos"};
+        ArrayList<String> habilidades=new ArrayList<>();
+        habilidades.add("Diseño paginas web");
+        habilidades.add("Administracion de proyectos");
         Jefe j=new Jefe("Camilo",habilidades, 125856320);
         Tarea tar1= new Tarea("Vistas", 0);
         Tarea tar2= new Tarea("Pruebas", 1);
@@ -83,7 +99,9 @@ public class AppTest {
     public void aprobarCulminacionTareaTest(){
         Tablero t= new Tablero();
         Tarea tar=new Tarea();
-        String[] habilidades={"Diseño paginas web", "Administracion de proyectos"};
+        ArrayList<String> habilidades=new ArrayList<>();
+        habilidades.add("Diseño paginas web");
+        habilidades.add("Administracion de proyectos");
         Jefe j=new Jefe("Sergio",habilidades, 845631453);
         t= j.crearTablero(0, "Proyecto AREM");
         tar=j.crearTarea(0, 0, "Crear BD");
