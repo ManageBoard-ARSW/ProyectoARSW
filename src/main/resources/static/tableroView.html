@@ -32,6 +32,7 @@ and open the template in the editor.
                          <option value="" selected="selected">tableros</option>
                  </select>
                   <button onclick="actualizartableros()" class="button">Actualizar</button>
+                  <button onclick="abrirPop()" class="button">Crear Tarea</button>
             </div>
             <div style="text-align:center;">
                 <table id="proyectos" border="3" style="border: 3px solid #B40404;">
@@ -42,12 +43,29 @@ and open the template in the editor.
                     <th><strong>Done</strong></th>
                 </tr>
             
-                  
+                   <tr>
+                    <td> <canvas id="myCanvas" width="250" height="1000" style="border:3px solid #F8E0E0;">
+                      </canvas>
+                     </td>
+                     <td>
+                      <canvas id="myCanvas2" width="250" height="1000" style="border:3px solid #F8E0E0;">
+                      </canvas>
+                  </td>
+                  <td>
+                      <canvas id="myCanvas3" width="250" height="1000" style="border:3px solid #F8E0E0;">
+                      </canvas>
+                   </td>
+                   <td>
+                     <canvas id="myCanvas4" width="250" height="1000" style="border:3px solid #F8E0E0;">
+                      </canvas>
+                    </td>
+                 </tr>   
             </table>
                 
             </div>
         </header>
          </div>
+    
 </body>
 </html>
 

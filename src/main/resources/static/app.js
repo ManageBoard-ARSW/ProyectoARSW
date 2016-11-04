@@ -27,7 +27,7 @@ function disconnect() {
 nuevoUsuario = function () {
     var tipo=$("#tipo").val();
     var c=$("#cedula").val();
-    cargarDatos(tipo)
+    cargarDatos(tipo);
     //pintaPerfil(c);
 };
 
@@ -38,7 +38,7 @@ direccion = function(){
     } else {
         window.open("empleado.html");
     }
-}
+};
 
 cargarDatos = function (u) {
     var cedula = $("#cedula").val();
@@ -65,4 +65,4 @@ pintaPerfil = function(cedula){
     $.get("/usuario/"+cedula,function(user){
             console.info(user);
     });
-}
+};
