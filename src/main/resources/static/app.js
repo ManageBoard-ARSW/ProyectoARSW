@@ -1,7 +1,5 @@
 
-var usuario=null;
-var usuarios = [];
-cedula=0;
+var usuario;
 habilidades=[];
     //console.info(text);
     
@@ -27,13 +25,12 @@ function disconnect() {
 nuevoUsuario = function () {
     var tipo=$("#tipo").val();
     var c=$("#cedula").val();
-    //direccion();
     cargarDatos(tipo);
-    //pintaPerfil(c);
 };
 
 direccion = function(){
     var t=$("#tipo").val();
+    
     if (t == "jefe") {
         window.open("jefe.html","_self");
     } else {
@@ -44,7 +41,6 @@ direccion = function(){
 cargarDatos = function (u) {
     var cedula = $("#cedula").val();
     var nombre = $("#nombre").val();
-
     var seleccion = document.getElementsByClassName("formularioIni"); //Arreglo con las habilidades
     for (var i = 0; i < seleccion.length; i++) {
         if (seleccion[i].checked) {
@@ -56,17 +52,22 @@ cargarDatos = function (u) {
 
 almacen = function(t, c, n, h){
     var text = {"tipo": t , "nombre":n , "habili":h };
+    sessionStorage.setItem('cc',c); 
     return $.ajax({url: "/usuario/"+c, 
          type: 'PUT', 
          data: JSON.stringify(text),
-         contentType: "application/json"}).then(direccion).then(direccion);
-         sessionStorage.setItem('nombre',cedula); 
-         sessionStorage.getItem('nombre').direccion();
+         contentType: "application/json"}).then(direccion).then(pintaPerfil);
          
 };
 
-pintaPerfil = function(cedula){
-    $.get("/usuario/"+cedula,function(user){
-            console.info(user);
+pintaPerfil = function () {
+    $.get("/usuario/" + sessionStorage.getItem('cc'), function (user) {
+        /*$("#grande").empty();
+        $("#grande").append(
+                "<h1>Producto</h1>" +
+                "<h3>Precio</h3>" );*/
+       document.getElementById("datosPer").innerHTML = "<h1> user.nombre.toString() </h1>" ;
+          
+                console.info(user);
     });
 };
