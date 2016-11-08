@@ -6,6 +6,7 @@ ToDo=[];
 doingD=[];
 doingP=[];
 done=[];
+habilidadesTareaActual =[];
 actualizarTareasDisponibles = function(){
     funtion_get_all_tasks().then(funcionP).then(function(){
         $("#contenido").droppable({
@@ -42,7 +43,7 @@ actualizarTareasDisponibles = function(){
         p=new Tarea(tareasDisp[p].nombre,tareasDisp[p].idTarea);
   };
 function abrirPop() { 
-    open('popup.html','','top=250,left=250,width=250,height=200') ;
+    open('popup.html','','top=450,left=450,width=450,height=400') ;
    
 } 
 function cerrarPop() { 
@@ -50,11 +51,27 @@ function cerrarPop() {
     close("popup.html") ; 
 }
 nuevaTarea = function datosPop(){
-    var pop=$("pop").val();
-    console.info(pop);
+    var nameT=$("#nomta").val();
+    var idT=$("#idta").val();
+    var seleccion = document.getElementsByClassName("formularioIni");
+    for (var i = 0; i < seleccion.length; i++) {
+        if (seleccion[i].checked) {
+             habilidadesTareaActual.push(seleccion[i].value);
+        }
+    }
+    almacenTareas(nameT, idT, habilidadesTareaActual);
+};
+almacenTareas = function(n,i,h){
+    var idTableroActual=tableroActual.id;
+    var info=  { "nombre":n ,"idTarea": i , "criterios":h };
+     return $.ajax({url: "/tableros/"+idTableroActual, 
+         type: 'PUT', 
+         data: JSON.stringify(text),
+         contentType: "application/json"});
+         
 };
 function tablero() {
-        open("tableroView.html");
+        open("tableroView.html","_self");
     } 
 cambiarTablero= function(id){
     idTableroActual=id;
