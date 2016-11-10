@@ -2,26 +2,6 @@
 var usuario;
 habilidades=[];
     //console.info(text);
-    
-function connect() {
-    var socket = new SockJS('/stompendpoint');
-    stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
-        
-        stompClient.subscribe('/topic/', function (data) {
-            
-        });
-    });
-};
-
-function disconnect() {
-    if (stompClient != null) {
-        stompClient.disconnect();
-    }
-    setConnected(false);
-    console.log("Disconnected");
-}
-
 nuevoUsuario = function () {
     var tipo=$("#tipo").val();
     var c=$("#cedula").val();

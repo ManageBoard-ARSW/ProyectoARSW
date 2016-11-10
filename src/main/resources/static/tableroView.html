@@ -3,70 +3,72 @@
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
--->
-<html>
-<head>
-	<title>Tablero</title>
+ 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="tablerostyles.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
         <script src="appboard.js"></script>
+<link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css" />
+
+-->
+<head>
+        <title>Tablero</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="tableroStyle.css">
+        <script src="jqwidgets/scripts/jquery-1.11.1.min.js"></script>
+        <script src="jqwidgets/jqxcore.js"></script>
+        <script src="jqwidgets/jqxsortable.js"></script>
+        <script src="jqwidgets/jqxkanban.js"></script>
+        <script src="jqwidgets/jqxdata.js"></script>
+        <script src="jqwidgets/scripts/demos.js"></script>
+        <script src="appBoard.js"></script>
+        <style>
+        .jqx-kanban-item-color-status {
+            width: 100%;
+            height: 25px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            position:relative;
+            margin-top:0px;
+            top: 0px;
+        }
+        .jqx-kanban-item {
+            padding-top: 0px;
+            padding-bottom:0px;
+        }
+        .jqx-kanban-item-text {
+            padding-top: 6px;
+            padding-bottom: 6px;
+        }
+        .jqx-kanban-item-avatar {
+            top: 9px;
+        }
+        .jqx-kanban-template-icon {
+            position: absolute;
+            right: 3px;
+            top:12px;
+        }
+    </style>
 </head>
+<body>
+    <header>
+        <div id="menuBar"> 
+            <button onclick="" class="button">Perfil</button>
+            <button onclick="tablero()" class="button">Board</button>
+        </div>
+        <div id ="menuder">
 
-        
+            <select id="tableros" onchange="cambiarTablero(this.value)" >
+                <option value="" selected="selected">tableros</option>
+            </select>
+            <button onclick="" class="button">Actualizar</button>
+            <button onclick="" class="button">Crear Tarea</button>
+        </div>
+    </header>
 
-<body >  
-    
-     <div class="flex-container">
-        <header>
-            <div id="menuBar">
-                <button onclick="" class="button">Perfil</button>
-                <button onclick="" class="button">Board</button>
-            </div>
-            
-            <div id ="menuder">
-   
-                <select id="tableros" onchange="cambiarTablero(this.value)" >
-                         <option value="" selected="selected">tableros</option>
-                 </select>
-                  <button onclick="actualizartableros()" class="button">Actualizar</button>
-                  <button onclick="abrirPop()" class="button">Crear Tarea</button>
-            </div>
-            <div style="text-align:center;">
-                <table id="proyectos" border="3" style="border: 3px solid #B40404;">
-                <tr>
-                    <th><strong>Todo</strong></th>
-                    <th><strong>DoingDeveloping</strong></th>
-                    <th><strong>DoingTesting</strong></th>
-                    <th><strong>Done</strong></th>
-                </tr>
-            
-                   <tr>
-                    <td> <canvas id="myCanvas" width="250" height="1000" style="border:3px solid #F8E0E0;">
-                      </canvas>
-                     </td>
-                     <td>
-                      <canvas id="myCanvas2" width="250" height="1000" style="border:3px solid #F8E0E0;">
-                      </canvas>
-                  </td>
-                  <td>
-                      <canvas id="myCanvas3" width="250" height="1000" style="border:3px solid #F8E0E0;">
-                      </canvas>
-                   </td>
-                   <td>
-                     <canvas id="myCanvas4" width="250" height="1000" style="border:3px solid #F8E0E0;">
-                      </canvas>
-                    </td>
-                 </tr>   
-            </table>
-                
-            </div>
-        </header>
-         </div>
-    
+    <!-- Se va a appBoard y despues a jqxKanban.js para el pintado-->
+    <div id="kanban1"></div>
 </body>
 </html>
-
-
