@@ -67,22 +67,22 @@ var getIconClassName = function () {
 }
 
 $(document).ready(function () {
-            
+   
     var dataAdapter = new $.jqx.dataAdapter(source);
     var resourcesAdapterFunc = function () {
         var resourcesSource =
                 {
                     localData: [
-                        {id: 0, name: "No name", image: "../../jqwidgets/styles/images/common.png", common: true},
-                        {id: 1, name: "Andrew Fuller", image: "../../images/andrew.png"},
-                        {id: 2, name: "Janet Leverling", image: "../../images/janet.png"},
-                        {id: 3, name: "Steven Buchanan", image: "../../images/steven.png"},
-                        {id: 4, name: "Nancy Davolio", image: "../../images/nancy.png"},
+                        {id: 0, name: "No name", common: true},
+                        {id: 1, name: "Andrew Fuller"},
+                        {id: 2, name: "Janet Leverling"},
+                        {id: 3, name: "Steven Buchanan"},
+                        {id: 4, name: "Nancy Davolio"},
                         {id: 5, name: "Michael Buchanan", image: "../../images/Michael.png"},
                         {id: 6, name: "Margaret Buchanan", image: "../../images/margaret.png"},
                         {id: 7, name: "Robert Buchanan", image: "../../images/robert.png"},
-                        {id: 8, name: "Laura Buchanan", image: "../../images/Laura.png"},
-                        {id: 9, name: "Laura Buchanan", image: "../../images/Anne.png"}
+                        {id: 8, name: "Laura Buchanan"},
+                        {id: 9, name: "Laura Buchanan"}
                     ],
                     dataType: "array",
                     dataFields: [
@@ -98,6 +98,7 @@ $(document).ready(function () {
     
     
     $('#kanban1').jqxKanban({
+        
         
         template: "<div class='jqx-kanban-item' id=''>"
                 + "<div class='jqx-kanban-item-color-status'></div>"
@@ -120,10 +121,10 @@ $(document).ready(function () {
             $(element).find(".jqx-kanban-item-text").css('background', item.color);
         },
         columns: [
-            {text: "To Do", iconClassName: getIconClassName(), dataField: "new", maxItems: 10},
-            {text: "Doing Developing", iconClassName: getIconClassName(), dataField: "work", maxItems: 10},
-            {text: "Doing Testing", iconClassName: getIconClassName(), dataField: "work", maxItems: 10},
-            {text: "Done", iconClassName: getIconClassName(), dataField: "done", maxItems: 20}
+            {text: "To Do", iconClassName: getIconClassName(), dataField: "new", maxItems: 20},
+            {text: "Doing Developing", iconClassName: getIconClassName(), dataField: "work", maxItems: 30},
+            {text: "Doing Testing", iconClassName: getIconClassName(), dataField: "test", maxItems: 30},
+            {text: "Done", iconClassName: getIconClassName(), dataField: "done", maxItems: 50}
         ],
         // render column headers.
         columnRenderer: function (element, collapsedElement, column) {
@@ -135,6 +136,13 @@ $(document).ready(function () {
         }
     });
 
+
+    /*$('#nuevaTarea').jqxButton();
+    $("#nuevaTarea").click(function () {
+        $('#kanban').jqxKanban('addItem', { status: "new", text: "Task" + newItemsCount, tags: "task" + newItemsCount, color: "#5dc3f0" });
+        newItemsCount++;
+    });
+    */
     // handle item clicks.
     $('#kanban1').on("itemAttrCl icked", function (event) {
         var args = event.args;
@@ -142,14 +150,17 @@ $(document).ready(function () {
             $('#kanban1').jqxKanban('removeItem', args.item.id);
         }
     });
-    // handle column clicks.
+    
+    
+    
+    // Manejo de los clicks en las columnas.
     var itemIndex = 0;
     $('#kanban1').on('columnAttrClicked', function (event) {
         var args = event.args;
         if (args.attribute == "button") {
             args.cancelToggle = true;
             if (!args.column.collapsed) {
-                var colors = ['#f19b60', '#5dc3f0', '#6bbd49', '#dd230d']
+                var colors = ['#f19b60', '#000000', '#6bbd49', '#dd230d']
                 $('#kanban1').jqxKanban('addItem', {
                     status: args.column.dataField,
                     text: "<input placeholder='(No Title)' style='width: 96%; margin-top:2px; border-radius: 3px; border-color: #ddd; line-height:20px; height: 20px;' class='jqx-input' id='newItem" + itemIndex + "' value=''/>",

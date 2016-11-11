@@ -279,7 +279,7 @@ button.jqx-button, input[type=button].jqx-button,  input[type=submit].jqx-button
     margin: 1px;
     border: 1px solid transparent;
     color: inherit !important;
-    *color: expression(this.parentNode.currentStyle['color']) !important;     
+    color: expression(this.parentNode.currentStyle['color']) !important;     
     outline: none;
     font-weight: normal !important;
 }
