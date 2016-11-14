@@ -656,7 +656,7 @@ License: http://jqwidgets.com/license/
                     a(c).addClass(b.toThemeProperty("jqx-kanban-item-selected"));
                     var e = a(this).data().kanbanItemId;
                     b._selectedId = e;
-                    b._raiseEvent("5", {item: b._sourceKeys[e]});
+                    b._raiseEvent("1", {item: b._sourceKeys[e]});
                     b._refreshEventHandlers()
                 }, selectItem: function (d) {
                     var b = this;
