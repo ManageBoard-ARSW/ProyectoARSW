@@ -644,7 +644,11 @@ License: http://jqwidgets.com/license/
                         c.headerElement.find(".jqx-kanban-column-header-title").css("left", -b + "px");
                         c.headerElement.find(".jqx-kanban-column-header-status").css("left", -b + "px")
                     }
+                    
+                    
+                    //Se ejecuta cuando se coge una tarea
                 }, _selectItem: function (d) {
+                    
                     var c = this;
                     var b = d.data.self;
                     b._selectedItemId = a(c).attr("id");
@@ -652,7 +656,7 @@ License: http://jqwidgets.com/license/
                     a(c).addClass(b.toThemeProperty("jqx-kanban-item-selected"));
                     var e = a(this).data().kanbanItemId;
                     b._selectedId = e;
-                    b._raiseEvent("1", {item: b._sourceKeys[e]});
+                    b._raiseEvent("5", {item: b._sourceKeys[e]});
                     b._refreshEventHandlers()
                 }, selectItem: function (d) {
                     var b = this;
