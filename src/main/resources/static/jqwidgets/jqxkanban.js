@@ -539,6 +539,8 @@ License: http://jqwidgets.com/license/
                             b._connectWith = b._connectWith + ", " + d + " div.jqx-kanban-column-container"
                         })
                     }
+                    
+                    //Permite que las tareas sean movibles
                 }, _transformToSortable: function () {
                     var c = this;
                     for (var b = 0; b < a(c._kanbanColumns).length; b++) {

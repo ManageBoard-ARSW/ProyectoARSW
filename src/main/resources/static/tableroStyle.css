@@ -532,8 +532,7 @@ button.jqx-button, input[type=button].jqx-button,  input[type=submit].jqx-button
     outline: 0 none;
     text-decoration: none;
     cursor: pointer;
-    color: inherit;
-    *color: expression(this.parentNode.currentStyle['color']);     
+    color: inherit;   
 }
  .jqx-grid-group-column  a:visited{
     color: inherit;

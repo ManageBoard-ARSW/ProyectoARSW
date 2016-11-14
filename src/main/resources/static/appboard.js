@@ -78,9 +78,9 @@ $(document).ready(function () {
                         {id: 2, name: "Janet Leverling"},
                         {id: 3, name: "Steven Buchanan"},
                         {id: 4, name: "Nancy Davolio"},
-                        {id: 5, name: "Michael Buchanan", image: "../../images/Michael.png"},
-                        {id: 6, name: "Margaret Buchanan", image: "../../images/margaret.png"},
-                        {id: 7, name: "Robert Buchanan", image: "../../images/robert.png"},
+                        {id: 5, name: "Michael Buchanan"},
+                        {id: 6, name: "Margaret Buchanan"},
+                        {id: 7, name: "Robert Buchanan"},
                         {id: 8, name: "Laura Buchanan"},
                         {id: 9, name: "Laura Buchanan"}
                     ],
@@ -115,8 +115,7 @@ $(document).ready(function () {
         
         
         // render items.
-        itemRenderer: function (element, item, resource)
-        {
+        itemRenderer: function (element, item, resource){
             $(element).find(".jqx-kanban-item-color-status").html("<span style='line-height: 23px; margin-left: 5px;'>" + resource.name + "</span>");
             $(element).find(".jqx-kanban-item-text").css('background', item.color);
         },
@@ -137,14 +136,9 @@ $(document).ready(function () {
     });
 
 
-    /*$('#nuevaTarea').jqxButton();
-    $("#nuevaTarea").click(function () {
-        $('#kanban').jqxKanban('addItem', { status: "new", text: "Task" + newItemsCount, tags: "task" + newItemsCount, color: "#5dc3f0" });
-        newItemsCount++;
-    });
-    */
-    // handle item clicks.
-    $('#kanban1').on("itemAttrCl icked", function (event) {
+  
+    // Elimina la tarea si se le da click en la esquina superior derecha
+    $('#kanban1').on("itemAttrClicked", function (event) {
         var args = event.args;
         if (args.attribute == "template") {
             $('#kanban1').jqxKanban('removeItem', args.item.id);
@@ -154,13 +148,15 @@ $(document).ready(function () {
     
     
     // Manejo de los clicks en las columnas.
+    //Funcionalidad para tareas nuevas
     var itemIndex = 0;
     $('#kanban1').on('columnAttrClicked', function (event) {
         var args = event.args;
         if (args.attribute == "button") {
             args.cancelToggle = true;
+            //Crea una nueva tarea
             if (!args.column.collapsed) {
-                var colors = ['#f19b60', '#000000', '#6bbd49', '#dd230d']
+                var colors = ['#f19b60', '#FFFFFF']
                 $('#kanban1').jqxKanban('addItem', {
                     status: args.column.dataField,
                     text: "<input placeholder='(No Title)' style='width: 96%; margin-top:2px; border-radius: 3px; border-color: #ddd; line-height:20px; height: 20px;' class='jqx-input' id='newItem" + itemIndex + "' value=''/>",
@@ -176,7 +172,9 @@ $(document).ready(function () {
                     event.stopPropagation();
                 });
                 input.keydown(function (event) {
-                    if (event.keyCode == 13) {
+                    //Evento cuando le escribo a la nota
+                    if (event.keyCode == 13) { //El evento 13 es un ENTER
+                        //Guarda lo que le escribi a la nota despues de dar enter
                         $("<span>" + $(event.target).val() + "</span>").insertBefore($(event.target));
                         $(event.target).remove();
                     }
