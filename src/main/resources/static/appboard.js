@@ -9,8 +9,53 @@ function connect() {
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         
-        stompClient.subscribe('/topic/', function (data) {
-            
+        stompClient.subscribe('/topic/', function (b) {
+            var j = a("#" + b._draggedItemId).parent().attr("data-kanban-column-container");
+                        var h = j;
+                        var d = null;
+                        for (var g = 0; g < b.columns.length; g++) {
+                            if (b.columns[g].dataField == h) {
+                                d = b.columns[g];
+                                break
+                            }
+                        }
+                        if (b._sourceKeys[b._draggedItemDataId]) {
+                            var e = null;
+                            var l = a("#" + b._kanbanId).jqxKanban("columns");
+                            var f = b._sourceKeys[b._draggedItemDataId].status;
+                            for (var g = 0; g < l.length; g++) {
+                                if (l[g].dataField == f) {
+                                    e = l[g];
+                                    break
+                                }
+                            }
+                            if (b._kanbanId !== b._dropKanbanId) {
+                                b._raiseEvent("3", {oldParentId: b._kanbanId, newParentId: b._dropKanbanId, itemId: b._selectedId, newColumn: d, oldColumn: e, itemData: b._draggedItemValues});
+                                var k = b._source.length;
+                                b._draggedItemValues.status = j;
+                                a("#" + b._dropKanbanId).trigger("_itemReceived", [b._selectedItemId, b._kanbanId, b._dropKanbanId, b._draggedItemValues, b._selectedId, d, e]);
+                                b._sourceKeys[b._draggedItemDataId] = null
+                            } else {
+                                b._raiseEvent("3", {newColumn: d, oldColumn: e, oldParentId: b._kanbanId, newParentId: b._dropKanbanId, itemId: b._selectedId, itemData: b._draggedItemValues});
+                                b._raiseEvent("4", {newColumn: d, oldColumn: e, oldParentId: b._kanbanId, newParentId: b._dropKanbanId, itemId: b._selectedId, itemData: b._draggedItemValues});
+                                b._sourceKeys[b._draggedItemDataId].status = j
+                            }
+                            if (b.columnRenderer) {
+                                for (var g = 0; g < b.columns.length; g++) {
+                                    if (b.columns[g].dataField == h) {
+                                        b.columnRenderer(b.columns[g].headerElement, b.columns[g].collapsedHeaderElement, b.columns[g]);
+                                        b._updateColumnTitle(b.columns[g])
+                                    }
+                                    if (b.columns[g].dataField == f) {
+                                        b.columnRenderer(b.columns[g].headerElement, b.columns[g].collapsedHeaderElement, b.columns[g]);
+                                        b._updateColumnTitle(b.columns[g])
+                                    }
+                                }
+                            }
+                        }
+                        b._draggedItemDataId = null;
+                        b._draggedItemId = null;
+                        b._draggedItemValues = null
         });
     });
 };

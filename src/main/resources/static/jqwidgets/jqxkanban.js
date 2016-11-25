@@ -841,10 +841,14 @@ License: http://jqwidgets.com/license/
                 _addEventHandlers: function () {
                     var b = this;
                     b.addHandler(a(window), "resize.kanban" + b.element.id, function (c) {
+                        
                         b._recalculateContainersHeight();
                         b._calculateExpandedColumnsWidth()
                     });
+                    
+                    //Se activa cuando cojo una tarea
                     b.addHandler(a(b._kanbanColumns), "start", function (d) {
+                       // console.log("Entro al start ");
                         b._selectedItemId = d.args.item[0].id;
                         b._draggedItemId = b._selectedItemId;
                         b._draggedItemDataId = a("#" + b._draggedItemId).data().kanbanItemId;
@@ -853,58 +857,20 @@ License: http://jqwidgets.com/license/
                         var c = a("#" + b._draggedItemId).height();
                         a(".jqx-kanban-item-placeholder").height(c)
                     });
+                    
+                    //Se activa cuando suelto una tarea
                     b.addHandler(a(b._kanbanColumns), "stop", function (c) {
-                        var j = a("#" + b._draggedItemId).parent().attr("data-kanban-column-container");
-                        var h = j;
-                        var d = null;
-                        for (var g = 0; g < b.columns.length; g++) {
-                            if (b.columns[g].dataField == h) {
-                                d = b.columns[g];
-                                break
-                            }
-                        }
-                        if (b._sourceKeys[b._draggedItemDataId]) {
-                            var e = null;
-                            var l = a("#" + b._kanbanId).jqxKanban("columns");
-                            var f = b._sourceKeys[b._draggedItemDataId].status;
-                            for (var g = 0; g < l.length; g++) {
-                                if (l[g].dataField == f) {
-                                    e = l[g];
-                                    break
-                                }
-                            }
-                            if (b._kanbanId !== b._dropKanbanId) {
-                                b._raiseEvent("3", {oldParentId: b._kanbanId, newParentId: b._dropKanbanId, itemId: b._selectedId, newColumn: d, oldColumn: e, itemData: b._draggedItemValues});
-                                var k = b._source.length;
-                                b._draggedItemValues.status = j;
-                                a("#" + b._dropKanbanId).trigger("_itemReceived", [b._selectedItemId, b._kanbanId, b._dropKanbanId, b._draggedItemValues, b._selectedId, d, e]);
-                                b._sourceKeys[b._draggedItemDataId] = null
-                            } else {
-                                b._raiseEvent("3", {newColumn: d, oldColumn: e, oldParentId: b._kanbanId, newParentId: b._dropKanbanId, itemId: b._selectedId, itemData: b._draggedItemValues});
-                                b._raiseEvent("4", {newColumn: d, oldColumn: e, oldParentId: b._kanbanId, newParentId: b._dropKanbanId, itemId: b._selectedId, itemData: b._draggedItemValues});
-                                b._sourceKeys[b._draggedItemDataId].status = j
-                            }
-                            if (b.columnRenderer) {
-                                for (var g = 0; g < b.columns.length; g++) {
-                                    if (b.columns[g].dataField == h) {
-                                        b.columnRenderer(b.columns[g].headerElement, b.columns[g].collapsedHeaderElement, b.columns[g]);
-                                        b._updateColumnTitle(b.columns[g])
-                                    }
-                                    if (b.columns[g].dataField == f) {
-                                        b.columnRenderer(b.columns[g].headerElement, b.columns[g].collapsedHeaderElement, b.columns[g]);
-                                        b._updateColumnTitle(b.columns[g])
-                                    }
-                                }
-                            }
-                        }
-                        b._draggedItemDataId = null;
-                        b._draggedItemId = null;
-                        b._draggedItemValues = null
+                        stompclient.send("/topic/",b);
+                        console.log("Entro a STOP")
+                        //El codigo esta en appboard
                     });
+                    //Se activa cada vez que muevo una tarea
                     b.addHandler(a(b._kanbanColumns), "sort", function (c) {
+                       // console.log("ESta en SORT");
                         b._dropKanbanId = a(".jqx-kanban-item-placeholder").parent().parent().parent().attr("id")
                     });
                     b.addHandler(a(b.host), "_itemReceived", function (c, p, q, m, f) {
+                        
                         b._raiseEvent("4", {itemId: p, oldParentId: q, newParentId: m, itemData: f});
                         var s = a("#" + p);
                         var n = a(b.template);
