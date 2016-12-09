@@ -28,6 +28,13 @@ public class ManejadorTablero {
         cargarTableros(this);
 
     }
+   
+    
+    public void addTableros(int idt,String nombre) {
+        Tablero tablero = new Tablero(idt, nombre);
+        tableros.add(tablero);
+        
+    }
     
     public List<Tablero> getTablero() {
         return tableros;

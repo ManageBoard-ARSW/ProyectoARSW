@@ -67,9 +67,18 @@ function poupnuevotablero(){
 }
 function crearTablero(){
     var nombret=$("#nombreT").val();
-    var idT=$("#idT").val();
-  //FUNVCION
+    var idt=$("#idT").val();
+    putTablero(nombret,idT)
+    
 }
+function putTablero(nombret,idT){
+     console.info("entro")   
+     var info=  { "nombre":nombret ,"idTablero": idT };
+     return $.ajax({url: "/tableros/"+idT, 
+         type: 'PUT', 
+         data: JSON.stringify(info),
+         contentType: "application/json"});
+};
 var getIconClassName = function () {
     switch (theme) {
         case "darkblue":
@@ -85,7 +94,7 @@ var getIconClassName = function () {
             return "jqx-icon-plus-alt-white ";
     }
     return "jqx-icon-plus-alt";
-}
+};
 
 $(document).ready(function () {
    

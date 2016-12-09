@@ -5,9 +5,12 @@
  */
 package edu.eci.arsw.manageboard.controller;
 
+import edu.eci.arsw.manageboard.config.ExcepcionUsuario;
 import edu.eci.arsw.manageboard.logic.Tablero;
 import edu.eci.arsw.manageboard.logic.Tarea;
 import edu.eci.arsw.manageboard.services.ManejadorTablero;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +37,7 @@ public class TableroController {
     
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> manejadorGetTablero() {
-        System.out.println("entro al get ...............................");
+       // System.out.println("entro al get ...............................");
         try {
             //obtener datos que se enviarán a través del API
             List<Tablero> tableros = manejador.getTablero();
@@ -46,6 +50,30 @@ public class TableroController {
         }
     }
     
+ // curl -i -X PUT -HContent-Type:application/json -HAccept:application/json http://localhost:8080/ordenes/1 -d '{"precio":1500,"nombre":"PAPAS"}'
+
+    @RequestMapping(path="/{idtablero}",  method = RequestMethod.PUT)
+    public ResponseEntity<?> manejadorPutRecurso(@PathVariable Integer idtablero,@RequestBody Object json ) {
+        System.out.println("entro put tablero");
+        try {
+            System.out.println("entro put ");
+            //registrar dato
+            LinkedHashMap<String,?> info=(LinkedHashMap) json;
+       
+            String no=(String)info.get("nombre");
+            manejador.addTableros(idtablero, no);
+            
+           
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception ex) {
+            Logger.getLogger(TableroController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error", HttpStatus.FORBIDDEN);
+        }
+
+        
+    }
+    
+ 
     @RequestMapping("/{id}")
     public ResponseEntity<?> manejadorGetRecursoId(@PathVariable int id){
 
