@@ -62,7 +62,14 @@ var source = {
 function tablero() {
         open("tableroView.html","_self");
     } 
-
+function poupnuevotablero(){
+    open('popupNewTablero.html','','top=450,left=450,width=450,height=400') ;
+}
+function crearTablero(){
+    var nombret=$("#nombreT").val();
+    var idT=$("#idT").val();
+  //FUNVCION
+}
 var getIconClassName = function () {
     switch (theme) {
         case "darkblue":

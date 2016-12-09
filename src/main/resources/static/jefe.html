@@ -14,24 +14,54 @@ and open the template in the editor.
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
         <script src="app.js"></script>
         <script src="appboard.js"></script>
+        <script src="appTablero.js"></script>
     </head>
     <body>
-        <div class="flex-container">
+        <div id="grande" class="flex-container">
             <header>
                 <div id="menuBar"> 
                     <button onclick="" class="button">Perfil</button>
                     <button onclick="tablero()" class="button">Board</button>
+                    <button onclick="nuevotablero()" class="button">New Board</button>
                 </div>
-                
-                <div id="datosPer">
-                    <h1>Nombre del Empleado</h1>
-                    <h3>Nombre del proyecto actual</h3>
-                    <h4>Nombre de la Empresa</h4>
-                </div>
-
-                
             </header>
-        <button onclick="tablero()" class="button">Board</button>
-        </div>
+            <nav>
+                
+                <img id="imag" src=""> <!--En src va la URI de la imagen-->
+                
+                <ul id="tareas">
+                  
+                    <li id="#home">Home</li>
+                </ul>
+
+                <ul id="tareas"  >
+                 
+                    <li id="#home">Home</li>
+                </ul>
+            </nav>
+
+            <div id="datosPer">
+                <h1>Nombre del Empleado</h1>
+                <h3>Nombre del proyecto actual</h3>
+                <h4>Nombre de la Empresa</h4>
+            </div>
+             <h1 id="tituloHabilidades"> Habilidades</h1>
+            
+            <table id="hab">
+                <tr>
+                    <td>
+                <li> habilidad 1</li>
+                <li> habilidad 2</li>
+                </td>
+
+                <td>
+                <li> habilidad 3</li>
+                <li> habilidad 4</li>
+                </td>
+                </tr>   
+            </table>
+             
+                </div>
+        
     </body>
 </html>

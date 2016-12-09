@@ -1,4 +1,3 @@
-
 var usuario;
 habilidades=[];
     //console.info(text);
@@ -41,13 +40,15 @@ almacen = function(t, c, n, h){
 };
 
 pintaPerfil = function () {
+    
     $.get("/usuario/" + sessionStorage.getItem('cc'), function (user) {
         /*$("#grande").empty();
         $("#grande").append(
                 "<h1>Producto</h1>" +
                 "<h3>Precio</h3>" );*/
+        console.info(user);
        document.getElementById("datosPer").innerHTML = "<h1> user.nombre.toString() </h1>" ;
           
-                console.info(user);
+               
     });
 };
