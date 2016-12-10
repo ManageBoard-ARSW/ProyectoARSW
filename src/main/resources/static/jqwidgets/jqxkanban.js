@@ -861,8 +861,6 @@ License: http://jqwidgets.com/license/
                     //Se activa cuando suelto una tarea
                     b.addHandler(a(b._kanbanColumns), "stop", function (c) {
                         
-                        stompclient.send("/topic/",{},b);
-                        console.log("Entro a STOP")
                         //El codigo esta en appboard
                         var j = a("#" + b._draggedItemId).parent().attr("data-kanban-column-container");
                         var h = j;

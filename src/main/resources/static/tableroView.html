@@ -17,7 +17,11 @@ and open the template in the editor.
         <title>Tablero</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="tableroStyle.css">
-        <script src="jqwidgets/scripts/jquery-1.11.1.min.js"></script>
+        <script src="jqwidgets/scripts/jquery-1.11.1.min.js"></script>  
+         <script src="/webjars/jquery/jquery.min.js"></script>
+        <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+        <script src="/webjars/stomp-websocket/stomp.min.js"></script>  
+        
         <script src="appboard.js"></script>
         <script src="jqwidgets/jqxcore.js"></script>
         <script src="jqwidgets/jqxsortable.js"></script>
@@ -63,11 +67,12 @@ and open the template in the editor.
                 <option value="" selected="selected">tableros</option>
             </select>
             <button onclick=""  class="button">Actualizar</button>
-            <button id="nuevaTarea" class="button">Crear Tarea</button>
+            <button onclick="nuevaTarea()" class="button">Crear Tarea</button>
+             
         </div>
     </header>
 
     <!-- Se va a appBoard y despues a jqxKanban.js para el pintado-->
-    <div id="kanban1"></div>
+    <div id="nombre"></div>
 </body>
 </html>
