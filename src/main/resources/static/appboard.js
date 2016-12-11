@@ -68,33 +68,47 @@ function disconnect() {
     console.log("Disconnected");
 }
 
-nuevaTarea= function(){
+function nuevaTareaPop() {
+        open('popup.html','','top=450,left=450,width=450,height=400') ;
+    } 
+
+nuevaTarea= function() {
+    var nombre=$("#nombreTarea").val();
+    var descripcion=$("#descripcionTarea").val();
+    
+    var prioridad=$("#prioridadTarea").val();
+    console.info(prioridad);
+    
+    };
+nuevaTarea1= function(){
+   
+    
     //Para el codigo de colores aca poedir la criticidad y asignar color
     var datos={"newColumn":{"dataField":"primera"},"oldColumn":{"dataField":"primera"},"itemData":{"id":0,"status":"primera","text":"Task" + newItemsCount,"tags":"task" + newItemsCount,"color":"#5dc3f0"}};
    // $('#nombre').jqxKanban('addItem', {status: "primera", text: "Task" + newItemsCount, tags: "task" + newItemsCount, color: "#5dc3f0"});
     newItemsCount++;
     //Tiene que ir a Manejador SOMP
     stompClient.send("/topic/", {},JSON.stringify(datos));
-}
+};
 
 actualizadorTableros= function(){
     $("#tableros").empty();
     $.get("/tableros/",function(tableros){
         tablerosDisponibles=tableros;
     }).then(pintaTableros);
-}
+};
 
 pintaTableros = function(){
     for(var i = 0
     ; i<=tablerosDisponibles.length; i++){         
         $("#tableros").append("<option value="+i+">"+tablerosDisponibles[i].idTablero+"</option>");
     }
-}
+};
 
 cambiarTablero= function(id){
     
     
-}
+};
 
 function tablero() {
         open("tableroView.html","_self");
@@ -107,7 +121,7 @@ function poupnuevotablero(){
     console.log("/tableros/"+tableroId);
     putTablero(tableroId).then();
     
-}
+};
 function putTablero(idT){
      console.log("entro")   
      var info=  {"idTablero": idT};

@@ -17,6 +17,10 @@ direccion = function(){
     }
 };
 
+function menuPrincipal() {
+        open("index.html","_self");
+    } 
+
 cargarDatos = function (u) {
     var cedula = $("#cedula").val();
     var nombre = $("#nombre").val();
