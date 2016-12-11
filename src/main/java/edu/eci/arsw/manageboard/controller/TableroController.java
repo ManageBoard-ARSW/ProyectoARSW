@@ -48,10 +48,22 @@ public class TableroController {
         manejador.setTablero(idT);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+    
+    @RequestMapping(path = "/{idT}/tareas", method = RequestMethod.PUT)
+    public ResponseEntity<?> putTarea(@PathVariable String idT, @RequestBody Tarea t) throws ExcepcionTablero {
+        manejador.addTarea(idT,t);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 
     /*
     Devuelve el LocalData de un determinado tablero
     */
+    @RequestMapping(value = "/{idT}/tareas", method = RequestMethod.GET)
+    public ResponseEntity<?> getTareas(@PathVariable("idT") String idT) throws ExcepcionTablero {
+       ArrayList<Tarea> tarjetas=manejador.getTarjetas(idT);
+       return new ResponseEntity<>(tarjetas,HttpStatus.ACCEPTED);
+    }
+    
     @RequestMapping(value = "/{idT}", method = RequestMethod.GET)
     public ResponseEntity<?> getTablero(@PathVariable("idT") String idT) throws ExcepcionTablero {
        ArrayList<Tarea> tarjetas=manejador.getTarjetas(idT);

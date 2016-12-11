@@ -24,6 +24,7 @@ public class Tarea {
     */
     
     private int idTarea;
+    private boolean existe;
     private String columna; // state -- Columna en la que se encuentra
     private String titulo; //label -- Titulo en el encabezado de la tarea
     private String descripcion; //tags 
@@ -46,8 +47,16 @@ public class Tarea {
       this.columna=c;
       this.descripcion=de;
       this.criticidad=colo;
+      this.existe=true;
     }
 
+    public Tarea(){
+    }
+    
+    public boolean getExiste(){
+        return this.existe;    
+    }
+    
     public int getIdTarea() {
         return idTarea;
     }

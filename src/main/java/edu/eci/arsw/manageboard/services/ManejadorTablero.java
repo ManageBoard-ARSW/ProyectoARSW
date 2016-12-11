@@ -50,4 +50,13 @@ public class ManejadorTablero {
     public ArrayList<Tarea> getTarjetas(String id){
         return getTablero(id).getTareas();
     }
+    
+    public void addTarea(String id, Tarea t){
+        System.out.println("esta en el add Tarea: "+t.getExiste());
+        if (t.getExiste()){
+            getTablero(id).agregarTarea(t);
+        }
+         
+    }
+    
 }

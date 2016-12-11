@@ -1,9 +1,19 @@
 var stompClient = null;
-var newItemsCount = 0;
+var newTask = 0;
 var tableroId;
 var tablerosDisponibles = [];
 
 // Caracteristacas basicas de creacion de tablero
+var fields = [
+    {name: "id", type: "string"},
+    {name: "status", map: "state", type: "string"},
+    {name: "text", map: "label", type: "string"},
+    {name: "tags", type: "string"},
+    {name: "color", map: "hex", type: "string"}
+];
+
+var source ={localData: [], dataType: "array", dataFields: fields};   
+    
 var columnas = [
     {text: "To Do", dataField: "primera", access: "none", maxItems: 20},
     {text: "Doing Developing", dataField: "segunda", access: "none", maxItems: 20},
@@ -68,13 +78,19 @@ function disconnect() {
     console.log("Disconnected");
 }
 
-nuevaTarea= function(){
+nuevaTareaTR= function(){
+    idT=$("#nombreT").val();
+    var info = new Tarea(newTask, "primera", "Titulo", "Descripcion", "#5dc3f0");
+    return $.ajax({url: "/tableros/"+idT+"/tareas", 
+         type: 'PUT' ,
+         data: JSON.stringify(info),
+         contentType: "application/json"});
     //Para el codigo de colores aca poedir la criticidad y asignar color
-    var datos={"newColumn":{"dataField":"primera"},"oldColumn":{"dataField":"primera"},"itemData":{"id":0,"status":"primera","text":"Task" + newItemsCount,"tags":"task" + newItemsCount,"color":"#5dc3f0"}};
+    //var datos={"newColumn":{"dataField":"primera"},"oldColumn":{"dataField":"primera"},"itemData":{"id":0,"status":"primera","text":"Task" + newItemsCount,"tags":"task" + newItemsCount,"color":"#5dc3f0"}};
    // $('#nombre').jqxKanban('addItem', {status: "primera", text: "Task" + newItemsCount, tags: "task" + newItemsCount, color: "#5dc3f0"});
-    newItemsCount++;
+    newTask++;
     //Tiene que ir a Manejador SOMP
-    stompClient.send("/topic/", {},JSON.stringify(datos));
+    //stompClient.send("/topic/", {},JSON.stringify(datos));
 }
 
 actualizadorTableros= function(){
@@ -85,14 +101,13 @@ actualizadorTableros= function(){
 }
 
 pintaTableros = function(){
-    for(var i = 0
-    ; i<=tablerosDisponibles.length; i++){         
+    for(var i = 0; i<=tablerosDisponibles.length; i++){         
         $("#tableros").append("<option value="+i+">"+tablerosDisponibles[i].idTablero+"</option>");
     }
 }
 
 cambiarTablero= function(id){
-    
+    $.get("/tableros/"+id,function(tareas){});
     
 }
 
@@ -102,15 +117,16 @@ function tablero() {
 function poupnuevotablero(){
     open('popupNewTablero.html','','top=450,left=450,width=450,height=400') ;
 }
- crearTablero = function(){
+
+crearTablero = function(){
     tableroId=$("#nombreT").val();
     console.log("/tableros/"+tableroId);
-    putTablero(tableroId).then();
+    putTablero(tableroId, []);
     
 }
-function putTablero(idT){
+function putTablero(idT,tar){
      console.log("entro")   
-     var info=  {"idTablero": idT};
+     var info=  tar;
      return $.ajax({url: "/tableros/"+idT, 
          type: 'PUT' ,
          data: JSON.stringify(info),
@@ -137,11 +153,11 @@ $(document).ready(function () {
         var args = event.args;  //Filtro los datos necesarios para tratar la tarea
         stompClient.send("/topic/", {},JSON.stringify(args));
     });
-    
+    var dataAdapter = new $.jqx.dataAdapter(source);
     $('#nombre').jqxKanban({
         width: 750,
         height: 650,
-        source: tareas,
+        source: tareas,  // dataAdapter
         columns: columnas,
         resources: staff
     });
