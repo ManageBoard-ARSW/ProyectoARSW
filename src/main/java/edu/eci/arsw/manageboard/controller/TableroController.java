@@ -5,6 +5,7 @@
  */
 package edu.eci.arsw.manageboard.controller;
 
+import edu.eci.arsw.manageboard.config.ExcepcionTablero;
 import edu.eci.arsw.manageboard.config.ExcepcionUsuario;
 import edu.eci.arsw.manageboard.logic.Tablero;
 import edu.eci.arsw.manageboard.logic.Tarea;
@@ -36,63 +37,30 @@ public class TableroController {
     ManejadorTablero manejador = null;
     
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> manejadorGetTablero() {
-       // System.out.println("entro al get ...............................");
-        try {
+    public ResponseEntity<?> manejadorGetTablero() throws ExcepcionTablero {
             //obtener datos que se enviarán a través del API
             List<Tablero> tableros = manejador.getTablero();
-
             return new ResponseEntity<>(tableros, HttpStatus.ACCEPTED);
-
-        } catch (Exception ex) {
-            Logger.getLogger(TableroController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error no tablero", HttpStatus.NOT_FOUND);
-        }
     }
-    
- // curl -i -X PUT -HContent-Type:application/json -HAccept:application/json http://localhost:8080/ordenes/1 -d '{"precio":1500,"nombre":"PAPAS"}'
 
-    @RequestMapping(path="/{idtablero}",  method = RequestMethod.PUT)
-    public ResponseEntity<?> manejadorPutRecurso(@PathVariable Integer idtablero,@RequestBody Object json ) {
-        System.out.println("entro put tablero");
-        try {
+    @RequestMapping(path="/{idT}",  method = RequestMethod.PUT)
+    public ResponseEntity<?> putTablero(@PathVariable String idT,@RequestBody Object json ) throws ExcepcionTablero {
+     
             System.out.println("entro put ");
             //registrar dato
-            LinkedHashMap<String,?> info=(LinkedHashMap) json;
+            LinkedHashMap<?,?> info=(LinkedHashMap) json;
        
-            String no=(String)info.get("nombre");
-            manejador.addTableros(idtablero, no);
+            //String no=(String)info.get("nombre");
+            //manejador.addTableros(idT, no);
             
-           
             return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (Exception ex) {
-            Logger.getLogger(TableroController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error", HttpStatus.FORBIDDEN);
-        }
-
-        
-    }
+     }
     
- 
-    @RequestMapping("/{id}")
-    public ResponseEntity<?> manejadorGetRecursoId(@PathVariable int id){
-
-        try {
-        //obtener datos que se enviarán a través del API
-        Tablero tab=manejador.getTableroId(id);
-        
-
-        return new ResponseEntity<>( tab, HttpStatus.ACCEPTED);
-        
-
-        } catch (Exception ex) {
-            Logger.getLogger(TableroController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error no existe Tablero",HttpStatus.NOT_FOUND);
-
-        }
-      
+    @RequestMapping(value = "/{idT}", method = RequestMethod.GET)
+    public ResponseEntity<?> getTablero(@PathVariable("idT") String idT) throws ExcepcionTablero {
+       return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
-    
+
     @RequestMapping("/{id}/tareasToDo")
     public ResponseEntity<?> manejadorGetTareasToDoId(@PathVariable int id){
 

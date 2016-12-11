@@ -746,7 +746,7 @@ License: http://jqwidgets.com/license/
                             }
                         }
                     }
-                    var f = {id: c.id, status: c.status, text: o.text || c.text, content: o.content || c.content, tags: o.tags || c.tags, color: h || c.color, resourceId: o.resourceId || c.resourceId, className: o.className || c.className};
+                    var f = {id: c.id, status:c.status, text: o.text || c.text, content: o.content || c.content, tags: o.tags || c.tags, color: h || c.color, resourceId: o.resourceId || c.resourceId, className: o.className || c.className};
                     n._source[b] = f;
                     n._sourceKeys[b] = f;
                     var l = n._commonItem;
