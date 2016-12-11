@@ -1,4 +1,5 @@
 var usuario;
+var nombrei;
 habilidades=[];
     //console.info(text);
 nuevoUsuario = function () {
@@ -8,10 +9,15 @@ nuevoUsuario = function () {
 };
 
 direccion = function(){
+    
     var t=$("#tipo").val();
     
     if (t == "jefe") {
-        window.open("jefe.html","_self");
+        window.open("jefe.html",self);
+       // var doc = document.open("text/jefe.html","replace");
+        //var texto = "<html><body><h1>nombre</h1>Hola "+nombrei ;
+        //doc.write(texto);
+        //doc.close();
     } else {
         window.open("empleado.html", "_self");
     }
@@ -20,6 +26,7 @@ direccion = function(){
 cargarDatos = function (u) {
     var cedula = $("#cedula").val();
     var nombre = $("#nombre").val();
+    nombrei=nombre;
     var seleccion = document.getElementsByClassName("formularioIni"); //Arreglo con las habilidades
     for (var i = 0; i < seleccion.length; i++) {
         if (seleccion[i].checked) {
@@ -35,7 +42,7 @@ almacen = function(t, c, n, h){
     return $.ajax({url: "/usuario/"+c, 
          type: 'PUT', 
          data: JSON.stringify(text),
-         contentType: "application/json"}).then(direccion).then(pintaPerfil);
+         contentType: "application/json"}).then(pintaPerfil).then(direccion);
          
 };
 
@@ -46,8 +53,10 @@ pintaPerfil = function () {
         $("#grande").append(
                 "<h1>Producto</h1>" +
                 "<h3>Precio</h3>" );*/
-        console.info(user);
-       document.getElementById("datosPer").innerHTML = "<h1> user.nombre.toString() </h1>" ;
+        usuario=user;
+        console.info(user.nombre);
+       
+        //document.getElementById("datosPer").innerHTML = "<h1> user.nombre.toString() </h1>" ;
           
                
     });

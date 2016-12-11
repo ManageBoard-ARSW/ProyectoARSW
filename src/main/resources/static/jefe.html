@@ -27,31 +27,45 @@ and open the template in the editor.
             </header>
             <nav>
                 
-                <img id="imag" src=""> <!--En src va la URI de la imagen-->
+                <img id="imag" src="http://image.flaticon.com/icons/svg/30/30803.svg"> <!--En src va la URI de la imagen-->
                 
                 <ul id="tareas">
                   
                     <li id="#home">Home</li>
                 </ul>
 
-                <ul id="tareas"  >
-                 
-                    <li id="#home">Home</li>
-                </ul>
+             
             </nav>
 
             <div id="datosPer">
-                <h1>Nombre del Empleado</h1>
+                
+                
+                <script>
+                    $.get("/usuario/" + sessionStorage.getItem('cc'), function (user) {  
+                       document.getElementById("datosPer").innerHTML = "<h1>Nombre del Empleado</h1>;"+user.nombre.toString() ;
+          
+                    });
+                  
+                    //var doc = document.open("text/jefe.html","replace");
+                   // var  nombrei =user.nombre;
+                    
+                    
+    
+                 </script>
+                
+                <h2>  </h2>
+                
                 <h3>Nombre del proyecto actual</h3>
                 <h4>Nombre de la Empresa</h4>
             </div>
              <h1 id="tituloHabilidades"> Habilidades</h1>
             
             <table id="hab">
+                
                 <tr>
                     <td>
-                <li> habilidad 1</li>
-                <li> habilidad 2</li>
+                        <li> habilidad 1</li>
+                        <li> habilidad 2</li>
                 </td>
 
                 <td>

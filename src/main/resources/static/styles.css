@@ -124,7 +124,10 @@ nav ul {
   width:190px;
   height:130px;
 }
-
+#imag2{
+  width:190px;
+  height:130px;
+}
 #tareas {
  overflow-y: scroll;
  border: 1px solid gray;
@@ -134,7 +137,15 @@ nav ul {
  height:100px;
  margin-top:54px
 }
-
+#tareas2 {
+ overflow-y: scroll;
+ border: 1px solid gray;
+ width:200px;
+ background: #FFFFFF;
+ float:left;
+ height:100px;
+ margin-top:54px
+}
 #datosPer{
   margin-top:54px;
   padding: 0em;
@@ -142,7 +153,13 @@ nav ul {
   width: 800px;
   overflow: hidden;
 }
-
+#datosPer2{
+  margin-top:54px;
+  padding: 0em;
+  height:180px;
+  width: 800px;
+  overflow: hidden;
+}
 #hab{
   border: 1px solid black;
   height:400px;
@@ -151,6 +168,20 @@ nav ul {
 }
 
 #hab li{
+  margin-left:80px;
+}
+
+#tituloHabilidades2{
+ text-align: left;
+}
+#hab2{
+  border: 1px solid black;
+  height:400px;
+  width: 800px;
+  margin-top:20px;
+}
+
+#hab li2{
   margin-left:80px;
 }
 
