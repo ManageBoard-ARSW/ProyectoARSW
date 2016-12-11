@@ -62,11 +62,11 @@ and open the template in the editor.
             <button onclick="tablero()" class="button">Board</button>
         </div>
         <div id ="menuder">
-
-            <select id="tableros" onchange="cambiarTablero(this.value)" >
-                <option value="" selected="selected">tableros</option>
-            </select>
-            <button onclick=""  class="button">Actualizar</button>
+            <div>
+                <select id="tableros" onchange="cambiarTablero(this.value)" >
+                </select>
+                <button onclick="actualizadorTableros()">Actualizar</button>
+             </div>
             <button onclick="nuevaTarea()" class="button">Crear Tarea</button>
              
         </div>

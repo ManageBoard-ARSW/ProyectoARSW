@@ -19,8 +19,9 @@ public class Jefe extends Usuario{
         proyectos= new ArrayList<>();
     }
     
-    public Tablero crearTablero(int id, String nombre){
-        Tablero tab = new Tablero(id, nombre);
+    
+    public Tablero crearTablero(String nombre){
+        Tablero tab = new Tablero(nombre);
         proyectos.add(tab);
         return tab;
     }
@@ -29,21 +30,14 @@ public class Jefe extends Usuario{
     
     }
     
-    public void asignarTarea(int idTablero, int idTarea){
-        proyectos.get(idTablero).cambiarEstado(this, idTarea);
-    }
     
     public void consultarPerfilUsuario(){
     
     }
     
-    public void aprobarCulminacionTarea(int idTablero, int idTarea){
-        proyectos.get(idTablero).getTarea(idTarea).setAprobado(true);
-        proyectos.get(idTablero).cambiarEstado(this, idTarea);
-    }
-    
+      /*
     public void agregarCriteriosTarea(int idTablero, int idTarea, String criterio){
         proyectos.get(idTablero).getTarea(idTarea).agregarCriterios(criterio);
     }
-    
+    */
 }

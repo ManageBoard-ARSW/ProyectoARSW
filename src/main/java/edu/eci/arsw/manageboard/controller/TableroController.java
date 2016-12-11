@@ -13,6 +13,7 @@ import edu.eci.arsw.manageboard.services.ManejadorTablero;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,33 +35,32 @@ import org.springframework.web.bind.annotation.RestController;
 public class TableroController {
     
     @Autowired
-    ManejadorTablero manejador = null;
+    ManejadorTablero manejador;
     
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> manejadorGetTablero() throws ExcepcionTablero {
-            //obtener datos que se enviarán a través del API
-            List<Tablero> tableros = manejador.getTablero();
+            List<Tablero> tableros = manejador.getTableros();
             return new ResponseEntity<>(tableros, HttpStatus.ACCEPTED);
     }
 
-    @RequestMapping(path="/{idT}",  method = RequestMethod.PUT)
-    public ResponseEntity<?> putTablero(@PathVariable String idT,@RequestBody Object json ) throws ExcepcionTablero {
-     
-            System.out.println("entro put ");
-            //registrar dato
-            LinkedHashMap<?,?> info=(LinkedHashMap) json;
-       
-            //String no=(String)info.get("nombre");
-            //manejador.addTableros(idT, no);
-            
-            return new ResponseEntity<>(HttpStatus.CREATED);
-     }
-    
-    @RequestMapping(value = "/{idT}", method = RequestMethod.GET)
-    public ResponseEntity<?> getTablero(@PathVariable("idT") String idT) throws ExcepcionTablero {
-       return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    @RequestMapping(path = "/{idT}", method = RequestMethod.PUT)
+    public ResponseEntity<?> putTablero(@PathVariable String idT, @RequestBody Object json) throws ExcepcionTablero {
+        manejador.setTablero(idT);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    /*
+    Devuelve el LocalData de un determinado tablero
+    */
+    @RequestMapping(value = "/{idT}", method = RequestMethod.GET)
+    public ResponseEntity<?> getTablero(@PathVariable("idT") String idT) throws ExcepcionTablero {
+       ArrayList<Tarea> tarjetas=manejador.getTarjetas(idT);
+       return new ResponseEntity<>(tarjetas,HttpStatus.ACCEPTED);
+    }
+
+    
+   /* 
+    
     @RequestMapping("/{id}/tareasToDo")
     public ResponseEntity<?> manejadorGetTareasToDoId(@PathVariable int id){
 
@@ -134,7 +134,7 @@ public class TableroController {
       
     }
     
-    
+    */
         
     
 }

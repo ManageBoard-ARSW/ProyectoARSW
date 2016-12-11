@@ -28,6 +28,7 @@ public class Usuario {
         proyectos= new ArrayList<>();
     }
     
+    /*
     public void moverTarea(int idTablero, int idTarea){
         proyectos.get(idTablero).cambiarEstado(this, idTarea);
     }
@@ -43,4 +44,5 @@ public class Usuario {
     public ArrayList<Tarea> consultarTareasSinRealizar(int idTablero){
         return proyectos.get(idTablero).tareasSinRealizar();
     }
+    */
 }

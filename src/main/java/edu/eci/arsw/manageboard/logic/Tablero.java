@@ -14,24 +14,39 @@ import java.util.concurrent.ConcurrentHashMap;
  * 
  */
 public class Tablero {
+    /*
     public ArrayList<Empleado> empleados;
     public Jefe boss;
+    public ArrayList<ConcurrentHashMap<String,?>> tasks;
     public final ConcurrentHashMap<Integer, Tarea> tareas;
-    public String nombre;
-    public int idTablero;
-    public ArrayList<Tarea> tareasTablero;
-    
-    public Tablero(int id, String n){
-         nombre=n;
-         idTablero=id;
+    //public String nombre;    
+        
+    public Tablero(String n){
+         idTablero=n;
          tareas= new ConcurrentHashMap<>();
     }
-
-    public Tablero() {
-        tareas= new ConcurrentHashMap<>();
+*/
+    public ArrayList<Tarea> tareasTablero;
+    public String idTablero;
+    
+    public Tablero(String id) {
+        idTablero=id;
+        tareasTablero= new ArrayList<Tarea>();
     }
     
+    public void agregarTarea (Tarea tata){
+        tareasTablero.add(tata);
+    }
+    
+    public ArrayList<Tarea> getTareas (){
+        return tareasTablero;
+    }   
+    
+    
+    
+    
       
+    /*
     public Tarea nuevaTarea(String n, int id){
         Tarea t= new Tarea(nombre, id);
         tareas.put(0, t);
@@ -118,4 +133,5 @@ public class Tablero {
         }
         return ta;
     }
+    */
 }

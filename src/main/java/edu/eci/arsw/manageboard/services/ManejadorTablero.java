@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,62 +22,32 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ManejadorTablero {
-    public List<Tablero> tableros;
+    public ArrayList<Tablero> tableros;
     
     public ManejadorTablero() {
-        tableros=new LinkedList<>();
-        cargarTableros(this);
-
+        tableros=new ArrayList<>();
     }
-   
-    
-    public void addTableros(int idt,String nombre) {
-        Tablero tablero = new Tablero(idt, nombre);
-        tableros.add(tablero);
-        
+      
+    public void setTablero(String id){
+        Tablero a=new Tablero(id);
+        tableros.add(a);
     }
     
-    public List<Tablero> getTablero() {
+    public List<Tablero> getTableros() {
         return tableros;
     }
-
-    private void cargarTableros(ManejadorTablero mt) {
-        Tablero t=new Tablero(12, "tablero1");
-        t.nuevaTarea("fgxd", 1);
-        t.nuevaTarea("ghgh", 5);
-        tableros.add(t);
-        System.out.println(tableros);
-    }
-
-    public Tablero getTableroId(Integer id) {
+    
+    public Tablero getTablero(String id){
         Tablero res=null;
-        for (Tablero tablero : tableros) {
-            if (tablero.idTablero==id) {
-                res=tablero;
-                break;
+        for (int i=0; i<tableros.size(); i++){
+            if(tableros.get(i).idTablero.equals(id)){
+                res=tableros.get(i);
             }
-        }return res;
-    }
-
-    public List<Tarea> getTareasToDoId(int id) {
-        Tablero tab=this.getTableroId(id);
-        return tab.TareasTodDo();
-    }
-
-    public List<Tarea> getTareasDoingDesId(int id) {
-        Tablero tab=this.getTableroId(id);
-        return tab.TareasDoingDes();
-    }
-
-    public List<Tarea> getTareasDoingPId(int id) {
-        Tablero tab=this.getTableroId(id);
-        return tab.TareasDoingP();    
-    }
-
-    public List<Tarea> getTareasDoneId(int id) {
-        Tablero tab=this.getTableroId(id);
-        return tab.TareasDone();
+        }
+        return res;
     }
     
-
+    public ArrayList<Tarea> getTarjetas(String id){
+        return getTablero(id).getTareas();
+    }
 }

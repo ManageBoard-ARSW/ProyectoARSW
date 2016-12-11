@@ -1,6 +1,7 @@
 var stompClient = null;
 var newItemsCount = 0;
 var tableroId;
+var tablerosDisponibles = [];
 
 // Caracteristacas basicas de creacion de tablero
 var columnas = [
@@ -29,10 +30,27 @@ function connect() {
             var criticidad=tarea.itemData.color;
             
             //$('#nombre').jqxKanban('updateItem', tareaId, { status: columnaNueva, text: "Task", tags: "Ya ahora si se cambiooooo", color: "#0917f1 "});
+
+            /* DEBO tenertlo en este formato para modificar State, recargar el tablero  
+             var source =
+             {
+             localData: [
+             { id: "1161", state: "done", label: "Combine Orders", tags: "orders, combine", hex: "#5dc3f0" },
+             { id: "1645", state: "work", label: "Change Billing Address", tags: "billing", hex: "#f19b60"},
+             { id: "9213", state: "new", label: "One item added to the cart", tags: "cart", hex: "#5dc3f0"},
+             { id: "6546", state: "done", label: "Edit Item Price", tags: "price, edit", hex: "#5dc3f0"},
+             { id: "9034", state: "done", label: "Login 404 issue", tags: "issue, login", hex: "#6bbd49" }
+             ],
+             dataType: "array",
+             dataFields: fields
+             };
+             
+             var dataAdapter = new $.jqx.dataAdapter(source);
+             */
             
             
             //Re pintada de la tarea modificada
-            $('#nombre').jqxKanban('addItem', {status: columnaNueva, text: "titulohjasbdhjsbadhb", tags:"descripcion", color: criticidad});  
+            $('#nombre').jqxKanban('addItem', {status: columnaNueva, text: "titulo", tags:"descripcion", color: criticidad});  
             
             /*
             //Limpiado de tablero             
@@ -55,10 +73,28 @@ nuevaTarea= function(){
     var datos={"newColumn":{"dataField":"primera"},"oldColumn":{"dataField":"primera"},"itemData":{"id":0,"status":"primera","text":"Task" + newItemsCount,"tags":"task" + newItemsCount,"color":"#5dc3f0"}};
    // $('#nombre').jqxKanban('addItem', {status: "primera", text: "Task" + newItemsCount, tags: "task" + newItemsCount, color: "#5dc3f0"});
     newItemsCount++;
+    //Tiene que ir a Manejador SOMP
     stompClient.send("/topic/", {},JSON.stringify(datos));
 }
 
+actualizadorTableros= function(){
+    $("#tableros").empty();
+    $.get("/tableros/",function(tableros){
+        tablerosDisponibles=tableros;
+    }).then(pintaTableros);
+}
 
+pintaTableros = function(){
+    for(var i = 0
+    ; i<=tablerosDisponibles.length; i++){         
+        $("#tableros").append("<option value="+i+">"+tablerosDisponibles[i].idTablero+"</option>");
+    }
+}
+
+cambiarTablero= function(id){
+    
+    
+}
 
 function tablero() {
         open("tableroView.html","_self");
@@ -69,14 +105,14 @@ function poupnuevotablero(){
  crearTablero = function(){
     tableroId=$("#nombreT").val();
     console.log("/tableros/"+tableroId);
-    putTablero(tableroId)
+    putTablero(tableroId).then();
     
 }
 function putTablero(idT){
      console.log("entro")   
      var info=  {"idTablero": idT};
      return $.ajax({url: "/tableros/"+idT, 
-         type: 'PUT', 
+         type: 'PUT' ,
          data: JSON.stringify(info),
          contentType: "application/json"});
 };

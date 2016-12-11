@@ -13,32 +13,78 @@ import java.util.ArrayList;
  *
  */
 public class Tarea {
+    /*
     private ArrayList<String> comentarios;
     private ArrayList<String>criterios;
     private String nombre;
-    private int idTarea;
     private int calificacion=0;
     private boolean toDo=true;
     private boolean aprobado=false;
     private String estado;
+    */
     
-    public Tarea(){
-        comentarios=new ArrayList<>();
-        criterios=new ArrayList<>();
-    }
-    
-    public Tarea(String n, int id){
-        this.nombre = n;
-        this.idTarea = id;
-        comentarios=new ArrayList<>();
-        criterios=new ArrayList<>();
-        this.estado="toDo";
+    private int idTarea;
+    private String columna; // state -- Columna en la que se encuentra
+    private String titulo; //label -- Titulo en el encabezado de la tarea
+    private String descripcion; //tags 
+    private String criticidad; // hex -- codigo de color respecto a la importancia
+    /*
+    localData: [
+                  { id: "1161", state: "done", label: "Combine Orders", tags: "orders, combine", hex: "#5dc3f0" },
+                  { id: "1645", state: "work", label: "Change Billing Address", tags: "billing", hex: "#f19b60"},
+                  { id: "9213", state: "new", label: "One item added to the cart", tags: "cart", hex: "#5dc3f0"},
+                  { id: "6546", state: "done", label: "Edit Item Price", tags: "price, edit", hex: "#5dc3f0"},
+                  { id: "9034", state: "done", label: "Login 404 issue", tags: "issue, login", hex: "#6bbd49" }
+         ],
+    */    
+    /*
+    @param id, columna, titulo, descripcion, criticidad
+    */
+    public Tarea(int id, String c, String t, String de, String colo){
+      this.idTarea = id;
+      this.titulo=t;
+      this.columna=c;
+      this.descripcion=de;
+      this.criticidad=colo;
     }
 
     public int getIdTarea() {
         return idTarea;
     }
+    
+    public String getTitulo() {
+        return titulo;
+    }
+    
+    public String getColumna() {
+        return columna;
+    }
+    
+    public String getDescripcion() {
+        return descripcion;
+    }
+    
+    public String getCriticidad() {
+        return criticidad;
+    }
+    
+    public void setColumna(String nueva){
+        this.columna=nueva;
+    }
+    
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setCriticidad(String criticidad) {
+        this.criticidad = criticidad;
+    }
+        
+    /*
     public void setIdTarea(int idTarea) {
         this.idTarea = idTarea;
     }
@@ -98,4 +144,7 @@ public class Tarea {
     public void setToDo(boolean t){
         toDo = t;
     }
+    */
+
+ 
 }

@@ -73,11 +73,7 @@ almacenTareas = function(n,i,h){
 function tablero() {
         open("tableroView.html","_self");
     } 
-cambiarTablero= function(id){
-    idTableroActual=id;
-    tableroActual =tablerosDisp[id];
-    funcion_get(id);
-};
+
 actualizartableros= function(){
     getAllBoards();
 };
