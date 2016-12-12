@@ -2,6 +2,7 @@ var stompClient = null;
 var newTask = 0;
 var tableroId;
 var tablerosDisponibles = [];
+var tableroActual;
 
 // Caracteristacas basicas de creacion de tablero
 var fields = [
@@ -100,7 +101,7 @@ function disconnect() {
 }
 
 function nuevaTareaPop() {
-        open('popup.html','','top=450,left=450,width=450,height=400') ;
+        open('popup.html'+"?"+tableroActual,'','top=450,left=450,width=450,height=400') ;
  } 
 
 function Tarea (id,c,t,de,colo) {
@@ -114,6 +115,8 @@ function Tarea (id,c,t,de,colo) {
 
 
 nuevaTarea= function() {
+    var idT =window.location.search.substr(1);
+    console.info(idT);
     var titulo=$("#nombreTarea").val();
     var descripcion=$("#descripcionTarea").val();
     var prioridad=$("#prioridadTarea").val();
@@ -129,12 +132,12 @@ nuevaTarea= function() {
     //idT=$("#nombreT").val();
     
     
-    idT="prueba";
+    //idT="prueba";
     //idT=sessionStorage.getItem('identificadorTablero');
     
     var info = new Tarea(newTask, "primera", titulo, descripcion, col);
     newTask++;
-    console.log("Nueva tarea antes del PUT el id que jode: "+idT);
+    console.info("Nueva tarea antes del PUT el id que jode: "+idT);
     return $.ajax({url: "/tableros/"+idT+"/tareas", 
          type: 'PUT' ,
          data: JSON.stringify(info),
@@ -185,13 +188,18 @@ actualizadorTableros= function(){
  * Pinta los tablero de las opciones 
  */
 pintaTableros = function(){
-    for(var i = 0; i<tablerosDisponibles.length; i++){         
+    for(var i = 0; i<=tablerosDisponibles.length; i++){         
         $("#tableros").append("<option value="+i+">"+tablerosDisponibles[i].idTablero+"</option>");
+    
     }
 };
 
 cambiarTablero= function(id){
     $.get("/tableros/"+id,function(tareas){});
+    console.info(id);
+    tableroActual=tablerosDisponibles[id].idTablero;
+    
+   
     
 };
 
