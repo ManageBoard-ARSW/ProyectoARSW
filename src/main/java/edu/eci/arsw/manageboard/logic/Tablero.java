@@ -14,6 +14,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * 
  */
 public class Tablero {
+    
+    
     /*
     public ArrayList<Empleado> empleados;
     public Jefe boss;
@@ -43,7 +45,24 @@ public class Tablero {
     }   
     
     
+    public Tarea getTarea(int idTarea){
+        Tarea task=new Tarea();
+        for(int i=0; i<tareasTablero.size(); i++){
+            if(tareasTablero.get(i).getIdTarea() == idTarea){
+                task = tareasTablero.get(i);
+            }
+        }   
+        return task;
+    }
     
+    public ArrayList<Tarea> TareasTodDo(){
+        ArrayList<Tarea> res=new ArrayList<Tarea>();
+        for (Tarea re : tareasTablero) {
+            if(re.getColumna().equals("toDo")){
+                res.add(re);
+            }
+        }return res;
+    }
     
       
     /*

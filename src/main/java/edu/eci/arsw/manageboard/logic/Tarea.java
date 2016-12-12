@@ -24,6 +24,7 @@ public class Tarea {
     */
     
     private int idTarea;
+    private boolean aprobado;
     private boolean existe;
     private String columna; // state -- Columna en la que se encuentra
     private String titulo; //label -- Titulo en el encabezado de la tarea
@@ -48,9 +49,18 @@ public class Tarea {
       this.descripcion=de;
       this.criticidad=colo;
       this.existe=true;
+      this.aprobado=false;
     }
 
     public Tarea(){
+    }
+    
+    public boolean isAprobado() {
+        return aprobado;
+    }
+    
+    public void setAprobado(boolean aprobado) {
+        this.aprobado = aprobado;
     }
     
     public boolean getExiste(){

@@ -35,9 +35,14 @@ public class Jefe extends Usuario{
     
     }
     
-      /*
+    public void aprobarCulminacionTarea(int idTablero, int idTarea, boolean aprobado){
+        proyectos.get(idTablero).getTarea(idTarea).setAprobado(aprobado);
+    }
+    /*
     public void agregarCriteriosTarea(int idTablero, int idTarea, String criterio){
         proyectos.get(idTablero).getTarea(idTarea).agregarCriterios(criterio);
     }
     */
+    
+    
 }

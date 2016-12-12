@@ -4,6 +4,7 @@ import edu.eci.arsw.manageboard.logic.Tarea;
 import edu.eci.arsw.manageboard.logic.Usuario;
 import edu.eci.arsw.manageboard.logic.Jefe;
 import edu.eci.arsw.manageboard.logic.Empleado;
+import edu.eci.arsw.manageboard.services.ManejadorTablero;
 import edu.eci.arsw.manageboard.services.ManejadorUsuario;
 import java.util.ArrayList;
 import static org.junit.Assert.*;
@@ -42,6 +43,24 @@ public class AppTest {
     }
     
     @Test
+    public void registrarTableroTest(){
+        /*
+        ManejadorUsuario mu = new ManejadorUsuario();
+        ArrayList<String> habilidades=new ArrayList<>();
+        habilidades.add("Diseño de paginas web");
+        habilidades.add("Ventas");
+        habilidades.add("Desarrollo de software");
+        Tablero t= new Tablero(0, "Proyecto final ARSW");
+        */
+        ManejadorTablero mt = new ManejadorTablero();
+        mt.setTablero("0");
+        mt.setTablero("1");
+        mt.setTablero("2");
+        mt.setTablero("3");
+        assertTrue(mt.tableros.size()==4);
+    }
+    
+    @Test
     public void crearTableroTest(){
         ArrayList<String> habilidades=new ArrayList<>();
         habilidades.add("Diseño paginas web");
@@ -50,99 +69,103 @@ public class AppTest {
         habilidades.add("Desarrollo de sotware");
         habilidades.add("Finanzas");
         Jefe j=new Jefe("Camila",habilidades, 123456789);
-        j.crearTablero(0, "Proyecto FGPR");
+        j.crearTablero("Proyecto FGPR");
         assertNotNull(j.proyectos);
     }
     
     @Test
     public void crearTareaTest(){
-        Tarea t1=new Tarea();
-        Tarea t2=new Tarea();
-        Tarea t3=new Tarea();
-        Tarea t4=null;
-        Tablero t= new Tablero();
+        Tarea t1;
+        Tarea t2;
+        Tarea t3;
+        Tarea t4;
+        Tablero t= new Tablero("0");
         ArrayList<String> habilidades=new ArrayList<>();
         habilidades.add("Marketing");
         habilidades.add("Ventas");
         habilidades.add("Administracion de proyectos");
         Jefe j=new Jefe("Andres",habilidades, 51964735);
-        t=j.crearTablero(0, "Proyecto ARSW");
-        t1=j.crearTarea(0, 0, "Pruebas");
-        t2=j.crearTarea(0, 1, "Persistencia");
-        t3=j.crearTarea(0, 2, "Logica");
-        t4=j.crearTarea(0, 3, "Vistas");
-        t.nuevaTarea(t1.getNombre(), t1.getId());
+        t=j.crearTablero("Proyecto ARSW");
+        t1=j.crearTarea(0, 0, "toDo", "Pruebas", "Realizar pruebas de la aplicacion", "#DC143C");
+        t2=j.crearTarea(0, 1, "toDo", "Persistencia", "Realizar la persistencia de la aplicacion", "#DC143C");
+        t3=j.crearTarea(0, 2, "toDo", "Logica", "Realizar la parte logica de la aplicacion", "#DC143C");
+        t4=j.crearTarea(0, 3, "toDo", "Vistas", "Realizar las vistas de la aplicacion", "#DC143C");
+        /*t.nuevaTarea(t1.getNombre(), t1.getId());
         t.nuevaTarea(t2.getNombre(), t2.getId());
         t.nuevaTarea(t3.getNombre(), t3.getId());
-        t.nuevaTarea(t4.getNombre(), t4.getId());
-        assertNotNull(t.tareas);
+        t.nuevaTarea(t4.getNombre(), t4.getId());*/
+        assertNotNull(t.tareasTablero);
     }
     
     @Test
     public void consultarTareasSinRealizarTest(){
-        Tablero t= new Tablero();
+        Tablero t;
         ArrayList<String> habilidades=new ArrayList<>();
         habilidades.add("Diseño paginas web");
         habilidades.add("Administracion de proyectos");
         Jefe j=new Jefe("Camilo",habilidades, 125856320);
-        Tarea tar1= new Tarea("Vistas", 0);
-        Tarea tar2= new Tarea("Pruebas", 1);
-        t=j.crearTablero(0, "Proyecto PDSW");
-        t.nuevaTarea(tar1.getNombre(), tar1.getId());
-        t.nuevaTarea(tar2.getNombre(), tar2.getId());
-        tar1.setToDo(true);
-        tar2.setToDo(true);
+        Tarea tar1= new Tarea(0, "toDo", "Diseño pagina", "Crear los html de las paginas", "#DC143C");
+        Tarea tar2= new Tarea(1, "toDo", "Logica", "Diseñar la logica de la aplicacion", "#DC143C");
+        t=j.crearTablero("Proyecto PDSW");
+        t.agregarTarea(tar1);
+        t.agregarTarea(tar2);
         assertNotNull(j.consultarTareasSinRealizar(0));
     }
     
     @Test
     public void aprobarCulminacionTareaTest(){
-        Tablero t= new Tablero();
-        Tarea tar=new Tarea();
+        Tablero t;
+        Tarea tar;
         ArrayList<String> habilidades=new ArrayList<>();
         habilidades.add("Diseño paginas web");
         habilidades.add("Administracion de proyectos");
         Jefe j=new Jefe("Sergio",habilidades, 845631453);
-        t= j.crearTablero(0, "Proyecto AREM");
-        tar=j.crearTarea(0, 0, "Crear BD");
-        t.nuevaTarea(tar.getNombre(), tar.getId());
-        j.aprobarCulminacionTarea(0, 0);
-        assertEquals(false, tar.isAprobado());
+        t= j.crearTablero("Proyecto AREM");
+        tar=j.crearTarea(0, 0, "toDo", "Crear BD", "Crear base de datos para la aplicacion", "#DC143C");
+        t.agregarTarea(tar);
+        j.aprobarCulminacionTarea(0, 0, true);
+        assertEquals(true, tar.isAprobado());
     }
     /*
     @Test
     public void agregarCriteriosTareaTest(){
-        Tablero t= new Tablero();
-        Tarea tar=new Tarea();
-        String[] habilidades={"Finanzas", "Administracion de proyectos"};
+        Tablero t;
+        Tarea tar;
+        ArrayList<String> habilidades=new ArrayList<>();
+        habilidades.add("Administracion de proyectos");
+        habilidades.add("Finanzas");
         Jefe j=new Jefe("Alejandro",habilidades, 845631453);
         t=j.crearTablero(0, "Proyecto GFIN");
         tar=j.crearTarea(0, 0, "Hacer balance de resultados");
         t.nuevaTarea(tar.getNombre(), tar.getId());
         j.agregarCriteriosTarea(0, 0, "Debe contener todos los movimientos financieros del año");
         j.agregarCriteriosTarea(0, 0, "Debe ser clara su lectura");
-        System.out.println("Criterios "+j.proyectos.get(0).getTarea(0).getComentarios().size());
-        assertTrue(tar.getCriterios().size()==2);
+        System.out.println("Criterios "+j.proyectos.get(t.idTablero).getTarea(tar.getId()).getCriterios().size());
+        System.out.println("Nombre tablero " +t.nombre);
+        System.out.println("Nombre tarea " +tar.getNombre());
+        assertNotNull(j.proyectos.get(t.idTablero).getTarea(tar.getId()).getCriterios());
+        //assertTrue(tar.getCriterios().size()==0);
     }
     
     @Test
     public void comentarTareaTest(){
-        Tarea t1=new Tarea();
-        Tarea t2=new Tarea();
-        Tarea t3=new Tarea();
-        Tablero t= new Tablero();
-        String[] habilidades={"Diseño paginas web", "Desarrollo de software", "Administracion de proyectos"};
-        Jefe j=new Jefe("Daniela",habilidades, 54896254);
+        Tarea t1;
+        Tablero t;
+        ArrayList<String> habilidades=new ArrayList<>();
+        habilidades.add("Diseño paginas web");
+        habilidades.add("Desarrollo de software");
+        habilidades.add("Administracion de proyectos");
+        Jefe j=new Jefe("Andres",habilidades, 54896254);
         t=j.crearTablero(0, "Proyecto COSW");
         t1=j.crearTarea(0, 0, "Conexion BD");
-        t2=j.crearTarea(0, 1, "Pruebas");
-        t3=j.crearTarea(0, 2, "Vistas html");
         t.nuevaTarea(t1.getNombre(), t1.getId());
-        t.nuevaTarea(t2.getNombre(), t2.getId());
-        t.nuevaTarea(t3.getNombre(), t3.getId());
         j.comentarTarea(0, 0, "Todas las vitas funcionan");
         j.comentarTarea(0, 0, "4 vistas creadas y funcionando");
-        System.out.println("Comentarios "+j.proyectos.get(0).getTarea(0).getComentarios().size());
-        assertTrue(j.proyectos.get(0).getTarea(0).getComentarios().size()==2);
+        System.out.println("Comentarios "+j.proyectos.get(t.idTablero).getTarea(t1.getId()).getComentarios().size());
+        System.out.println("Proyectos " +j.proyectos.size());
+        System.out.println("nombre Tablero "+j.proyectos.get(0).nombre);
+        System.out.println("id Tarea "+j.proyectos.get(0).getTarea(0).getId());
+        assertNotNull(j.proyectos.get(t.idTablero).getTarea(t1.getId()).getComentarios());
+        //assertTrue(j.proyectos.get(0).getTarea(t1.getId()).getComentarios().size()==2);
     }*/
 }

@@ -28,21 +28,27 @@ public class Usuario {
         proyectos= new ArrayList<>();
     }
     
+    public Tarea crearTarea(int idTablero, int id, String c, String t, String de, String colo){
+        Tarea tarea = new Tarea(id, c, t, de, colo);
+        proyectos.get(idTablero).agregarTarea(tarea);
+        return tarea;
+    }
+    
+    public ArrayList<Tarea> consultarTareasSinRealizar(int idTablero){
+        return proyectos.get(idTablero).TareasTodDo();
+    }
+    
     /*
     public void moverTarea(int idTablero, int idTarea){
         proyectos.get(idTablero).cambiarEstado(this, idTarea);
     }
     
-    public Tarea crearTarea(int idTablero, int idTarea, String n){
-        return proyectos.get(idTablero).nuevaTarea(n, idTarea);
-    }
+    
     
     public void comentarTarea(int idTablero, int idtarea, String Comentario){
         proyectos.get(idTablero).getTarea(idtarea).agregarComentario(Comentario);
     }
     
-    public ArrayList<Tarea> consultarTareasSinRealizar(int idTablero){
-        return proyectos.get(idTablero).tareasSinRealizar();
-    }
+    
     */
 }
