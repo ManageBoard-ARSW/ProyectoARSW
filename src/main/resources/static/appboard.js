@@ -31,6 +31,27 @@ function connect() {
         console.log('Connected: ' + frame);
         
         stompClient.subscribe('/topic/', function (data) {
+            console.log ("LLEGOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO al suscribir")
+            console.log(data.body);
+            var tareaId;
+            var columnaNueva;
+            var titu;
+            var descrip;
+            var color;
+            var localData=[];
+            tareas = JSON.parse(data.body);
+            for (var i = 0; i < tareas.length; i++) {
+                 tareaId = tareas[i].idTarea;
+                 columnaNueva = tareas[i].columna;
+                 titu = tareas[i].titulo;
+                 descrip = tareas[i].descripcion;
+                 color = tareas[i].criticidad;
+                 
+                 
+            }
+            
+            console.log ("Esto es lo que llevo al suscribir"+tareas[0].titulo);
+            /*
             console.log(data+"Lo que le llega al suscribir");
             var tarea = JSON.parse(data.body); //Tarea que fue movida
             var tareaId=tarea.itemData.id;
@@ -56,13 +77,13 @@ function connect() {
              };
              
              var dataAdapter = new $.jqx.dataAdapter(source);
-             */
+             
             
             
             //Re pintada de la tarea modificada
             $('#nombre').jqxKanban('addItem', {status: columnaNueva, text: titulo, tags:descripcion, color: criticidad});  
             
-            /*
+            
             //Limpiado de tablero             
             $('#nombre').jqxKanban('removeItem', tareaId); 
             */
@@ -117,7 +138,7 @@ nuevaTarea= function() {
     return $.ajax({url: "/tableros/"+idT+"/tareas", 
          type: 'PUT' ,
          data: JSON.stringify(info),
-         contentType: "application/json"});
+         contentType: "application/json"}).then(traeElementos);
     
     
     /*
@@ -141,8 +162,17 @@ nuevaTarea= function() {
     */
  };
 
-
-
+/*
+ * Trae la lista de tareas del tablero con id: idT 
+ * y luego lo replica para todos los suscritos a ese tablero
+ */
+traeElementos = function(){
+    idT="prueba";
+    //idT=sessionStorage.getItem('identificadorTablero');
+    $.get("/tableros/"+idT+"/tareas",function(tarjetas){
+        datos=tarjetas;
+    }).then(stompClient.send("/topic/", {},JSON.stringify(datos)));
+};
 
 actualizadorTableros= function(){
     $("#tableros").empty();
@@ -155,7 +185,7 @@ actualizadorTableros= function(){
  * Pinta los tablero de las opciones 
  */
 pintaTableros = function(){
-    for(var i = 0; i<=tablerosDisponibles.length; i++){         
+    for(var i = 0; i<tablerosDisponibles.length; i++){         
         $("#tableros").append("<option value="+i+">"+tablerosDisponibles[i].idTablero+"</option>");
     }
 };
