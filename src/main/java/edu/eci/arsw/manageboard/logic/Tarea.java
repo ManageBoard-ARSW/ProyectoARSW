@@ -6,6 +6,9 @@
 package edu.eci.arsw.manageboard.logic;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 
 /**
@@ -30,6 +33,8 @@ public class Tarea {
     private String titulo; //label -- Titulo en el encabezado de la tarea
     private String descripcion; //tags 
     private String criticidad; // hex -- codigo de color respecto a la importancia
+    private Date fechaActual;
+    //private int fecha;
     /*
     localData: [
                   { id: "1161", state: "done", label: "Combine Orders", tags: "orders, combine", hex: "#5dc3f0" },
@@ -50,6 +55,7 @@ public class Tarea {
       this.criticidad=colo;
       this.existe=true;
       this.aprobado=false;
+      //this.fecha= fechaActual.getDate();
     }
 
     public Tarea(){
