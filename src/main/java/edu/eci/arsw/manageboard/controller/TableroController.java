@@ -51,6 +51,7 @@ public class TableroController {
     
     @RequestMapping(path = "/{idT}/tareas", method = RequestMethod.PUT)
     public ResponseEntity<?> putTarea(@PathVariable String idT, @RequestBody Tarea t) throws ExcepcionTablero {
+        System.out.println("Entro al PUT DE TAREA");
         manejador.addTarea(idT,t);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -68,85 +69,5 @@ public class TableroController {
     public ResponseEntity<?> getTablero(@PathVariable("idT") String idT) throws ExcepcionTablero {
        ArrayList<Tarea> tarjetas=manejador.getTarjetas(idT);
        return new ResponseEntity<>(tarjetas,HttpStatus.ACCEPTED);
-    }
-
-    
-   /* 
-    
-    @RequestMapping("/{id}/tareasToDo")
-    public ResponseEntity<?> manejadorGetTareasToDoId(@PathVariable int id){
-
-        try {
-        //obtener datos que se enviarán a través del API
-        List<Tarea> tarTodo=manejador.getTareasToDoId(id);
-        
-
-        return new ResponseEntity<>( tarTodo, HttpStatus.ACCEPTED);
-        
-
-        } catch (Exception ex) {
-            Logger.getLogger(TableroController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error no existe Tablero",HttpStatus.NOT_FOUND);
-
-        }
-      
-    }
-    @RequestMapping("/{id}/tareasDoingDes")
-    public ResponseEntity<?> manejadorGetTareasDoingDes(@PathVariable int id){
-
-        try {
-        //obtener datos que se enviarán a través del API
-        List<Tarea> tarTodo=manejador.getTareasDoingDesId(id);
-        
-
-        return new ResponseEntity<>( tarTodo, HttpStatus.ACCEPTED);
-        
-
-        } catch (Exception ex) {
-            Logger.getLogger(TableroController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error no existe Tablero",HttpStatus.NOT_FOUND);
-
-        }
-      
-    }
-    @RequestMapping("/{id}/tareasDoingP")
-    public ResponseEntity<?> manejadorGetTareasDoingPId(@PathVariable int id){
-
-        try {
-        //obtener datos que se enviarán a través del API
-        List<Tarea> tarTodo=manejador.getTareasDoingPId(id);
-        
-
-        return new ResponseEntity<>( tarTodo, HttpStatus.ACCEPTED);
-        
-
-        } catch (Exception ex) {
-            Logger.getLogger(TableroController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error no existe Tablero",HttpStatus.NOT_FOUND);
-
-        }
-      
-    }
-    @RequestMapping("/{id}/tareasDone")
-    public ResponseEntity<?> manejadorGetTareasDoneId(@PathVariable int id){
-
-        try {
-        //obtener datos que se enviarán a través del API
-        List<Tarea> tarTodo=manejador.getTareasDoneId(id);
-        
-
-        return new ResponseEntity<>( tarTodo, HttpStatus.ACCEPTED);
-        
-
-        } catch (Exception ex) {
-            Logger.getLogger(TableroController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error no existe Tablero",HttpStatus.NOT_FOUND);
-
-        }
-      
-    }
-    
-    */
-        
-    
+    }       
 }

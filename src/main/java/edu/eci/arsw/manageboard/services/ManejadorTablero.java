@@ -53,6 +53,8 @@ public class ManejadorTablero {
     
     public void addTarea(String id, Tarea t){
         System.out.println("esta en el add Tarea: "+t.getExiste());
+        System.out.println("esta en el add Tarea ID del tablero: "+id);
+        System.out.println("esta en el add Tarea el GETTABLERO: "+getTablero(id));
         if (t.getExiste()){
             getTablero(id).agregarTarea(t);
         }

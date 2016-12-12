@@ -78,27 +78,50 @@ function disconnect() {
     console.log("Disconnected");
 }
 
-
-nuevaTareaTR= function(){
-    idT=$("#nombreT").val();
-    var info = new Tarea(newTask, "primera", "Titulo", "Descripcion", "#5dc3f0");
-    return $.ajax({url: "/tableros/"+idT+"/tareas", 
-         type: 'PUT' ,
-         data: JSON.stringify(info),
-         contentType: "application/json"});
-   //Para el codigo de colores aca poedir la criticidad y asignar color
-    //var datos={"newColumn":{"dataField":"primera"},"oldColumn":{"dataField":"primera"},"itemData":{"id":0,"status":"primera","text":"Task" + newItemsCount,"tags":"task" + newItemsCount,"color":"#5dc3f0"}};
-   // $('#nombre').jqxKanban('addItem', {status: "primera", text: "Task" + newItemsCount, tags: "task" + newItemsCount, color: "#5dc3f0"});
-    newTask++;
-    //Tiene que ir a Manejador SOMP
-    //stompClient.send("/topic/", {},JSON.stringify(datos));
-}
-
 function nuevaTareaPop() {
         open('popup.html','','top=450,left=450,width=450,height=400') ;
  } 
 
+function Tarea (id,c,t,de,colo) {
+      this.idTarea = id;
+      this.titulo=t;
+      this.columna=c;
+      this.descripcion=de;
+      this.criticidad=colo;
+      this.existe=true;
+}
+
+
 nuevaTarea= function() {
+    var titulo=$("#nombreTarea").val();
+    var descripcion=$("#descripcionTarea").val();
+    var prioridad=$("#prioridadTarea").val();
+    var col;
+    
+    if(prioridad=="alto"){
+        col="#DC143C";
+    }else if(prioridad=="medio"){
+        col="#2980b9";
+    }else {
+        col="#008000";
+    }
+    //idT=$("#nombreT").val();
+    
+    
+    idT="prueba";
+    //idT=sessionStorage.getItem('identificadorTablero');
+    
+    var info = new Tarea(newTask, "primera", titulo, descripcion, col);
+    newTask++;
+    console.log("Nueva tarea antes del PUT el id que jode: "+idT);
+    return $.ajax({url: "/tableros/"+idT+"/tareas", 
+         type: 'PUT' ,
+         data: JSON.stringify(info),
+         contentType: "application/json"});
+    
+    
+    /*
+     * Esto es lo que funciona de la forma chambona
     var titulo=$("#nombreTarea").val();
     var descripcion=$("#descripcionTarea").val();
     var prioridad=$("#prioridadTarea").val();
@@ -115,6 +138,7 @@ nuevaTarea= function() {
     stompClient.send("/topic/", {},JSON.stringify(datos));
     console.info(prioridad);
     newTask++;
+    */
  };
 
 
@@ -127,6 +151,9 @@ actualizadorTableros= function(){
     }).then(pintaTableros);
 };
 
+/*
+ * Pinta los tablero de las opciones 
+ */
 pintaTableros = function(){
     for(var i = 0; i<=tablerosDisponibles.length; i++){         
         $("#tableros").append("<option value="+i+">"+tablerosDisponibles[i].idTablero+"</option>");
@@ -147,12 +174,11 @@ function poupnuevotablero(){
 
 crearTablero = function(){
     tableroId=$("#nombreT").val();
-    console.log("/tableros/"+tableroId);
+    sessionStorage.setItem('identificadorTablero',tableroId); 
     putTablero(tableroId);
 };
 
-function putTablero(idT){
-     console.log("entro")   
+function putTablero(idT){ 
      var info= {"idTablero":idT};
      return $.ajax({url: "/tableros/"+idT, 
          type: 'PUT' ,
