@@ -7,41 +7,44 @@ and open the template in the editor.
 <html>
     <head>
         <title>TODO supply a title</title>
+        
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="tableroStyle.css">
+        <script src="jqwidgets/scripts/jquery-1.11.1.min.js"></script>  
+         <script src="/webjars/jquery/jquery.min.js"></script>
+        <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+        <script src="/webjars/stomp-websocket/stomp.min.js"></script>  
+        
+        <script src="appboard.js"></script>
+        <script src="jqwidgets/jqxcore.js"></script>
+        <script src="jqwidgets/jqxsortable.js"></script>
+        <script src="jqwidgets/jqxkanban.js"></script>
+        <script src="jqwidgets/jqxdata.js"></script>
+        <script src="jqwidgets/scripts/demos.js"></script>
+      
+        
+        
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="tablerostyles.css">
         <script src="appboard.js"></script>
     </head>
-    <body>
+     <body>
        
-        <form id='pop'>
-              Nombre:<br>
-            <input id="nomta" type="text" name="Nombre tarea ">
+        <form id='crearTarea'>
+            Nombre:<br>
+            <input id="nombreTarea" type="text" name="Nombre Tarea">
             <br>
             
-            id:<br>
-            <input id="idta" type="text" name="Nombre tarea ">
+           
+            Descripcion:<br>
+            <input id="descripcionTarea" type="text" name="Descripcion">
             <br>
             
-            
-             <h2 id="habiTec">Habilidades técnicas:</h2>
-
-            <table>
-                <tr>
-                    <td>
-                        <input id="desarrollo" class="formularioIni" type="checkbox" name="habilidad" value="Desarrollo de software"> Desarrollo de software<br>
-                        <input id="proyectos" class="formularioIni" type="checkbox" name="habilidad" value="Proyectos"> Administracion de proyectos<br>
-                        <input id="finanzas" class="formularioIni" type="checkbox" name="habilidad" value="Finanzas"> Finanzas<br>
-                    </td>
-                    <td>
-                        <input id="diseñoWeb" class="formularioIni" type="checkbox" name="habilidad" value="DiseñoWeb"> Diseño de paginas web<br>
-                        <input id="marketing" class="formularioIni" type="checkbox" name="habilidad" value="Marketing"> Marketing<br>
-                        <input id="ventas" class="formularioIni" type="checkbox" name="habilidad" value="Ventas"> Ventas<br>
-                    </td>
-                </tr>             
-            </table>
-            
+            Prioridad:<br>
+            <input id="prioridadTarea" type="text" name="Prioridad">
+            <br>
             </form>
-        <button onclick="cerrarPop()" class="button">ok</button>
+        <button onclick="nuevaTarea()" class="button">ok</button>
     </body>
 </html>

@@ -21,43 +21,73 @@ and open the template in the editor.
         <div id="grande" class="flex-container">
             <header>
                 <div id="menuBar"> 
-                    <button onclick="" class="button">Perfil</button>
+                    <button onclick="menuPrincipal()" class="button">Perfil</button>
                     <button onclick="tablero()" class="button">Board</button>
                     <button onclick=" poupnuevotablero()" class="button">New Board</button>
                 </div>
             </header>
             <nav>
                 
-                <img id="imag" src=""> <!--En src va la URI de la imagen-->
+                <img id="imag" src="http://image.flaticon.com/icons/svg/30/30803.svg"> <!--En src va la URI de la imagen-->
+                
                 
                 <ul id="tareas">
                   
-                    <li id="#home">Home</li>
+                    <li id="#tarea">Home</li>
                 </ul>
 
                 <ul id="tareas"  >
                  
-                    <li id="#home">Home</li>
+                    <li id="#tarea">Home</li>
                 </ul>
             </nav>
 
             <div id="datosPer">
                 <h1>Nombre del Empleado</h1>
+                
+                
+                
+                      
+                 <script>
+                     $.get("/usuario/" + sessionStorage.getItem('cc'), function (user) {  
+                        document.getElementById("datosPer").innerHTML = "<h1 >Bienvenido</h1>;"+user.nombre.toString() ;
+                        console.info(user);
+                     });
+                   
+                     //var doc = document.open("text/jefe.html","replace");
+                    // var  nombrei =user.nombre;
+                     
+                     
+    
+                  </script>
+                
                 <h3>Nombre del proyecto actual</h3>
                 <h4>Nombre de la Empresa</h4>
             </div>
-             <h1 id="tituloHabilidades"> Habilidades</h1>
+             <h1 id="tituloHabilidades"> Tus Habilidades son:</h1>
+                <script>
+                     $.get("/usuario/" + sessionStorage.getItem('cc'), function (user) {  
+                        var habilidades = user.habilidades;
+                        console.info(habilidades);
+                        var text="";
+                        for (i = 0; i < habilidades.length; i++) { 
+                            text+=habilidades[i]+"<br style=line-height:300%; >";
+                        document.getElementById("hab").innerHTML = text;
+                
+                            }
+                     });
+                   
+                  </script>
             
             <table id="hab">
+                
                 <tr>
                     <td>
-                <li> habilidad 1</li>
-                <li> habilidad 2</li>
-                </td>
+               
+                     </td>
 
                 <td>
-                <li> habilidad 3</li>
-                <li> habilidad 4</li>
+              
                 </td>
                 </tr>   
             </table>

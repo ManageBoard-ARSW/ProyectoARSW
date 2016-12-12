@@ -60,7 +60,7 @@ function connect() {
             
             
             //Re pintada de la tarea modificada
-            $('#nombre').jqxKanban('addItem', {status: columnaNueva, text: "titulo", tags:"descripcion", color: criticidad});  
+            $('#nombre').jqxKanban('addItem', {status: columnaNueva, text: titulo, tags:descripcion, color: criticidad});  
             
             /*
             //Limpiado de tablero             
@@ -78,6 +78,7 @@ function disconnect() {
     console.log("Disconnected");
 }
 
+
 nuevaTareaTR= function(){
     idT=$("#nombreT").val();
     var info = new Tarea(newTask, "primera", "Titulo", "Descripcion", "#5dc3f0");
@@ -85,7 +86,7 @@ nuevaTareaTR= function(){
          type: 'PUT' ,
          data: JSON.stringify(info),
          contentType: "application/json"});
-    //Para el codigo de colores aca poedir la criticidad y asignar color
+   //Para el codigo de colores aca poedir la criticidad y asignar color
     //var datos={"newColumn":{"dataField":"primera"},"oldColumn":{"dataField":"primera"},"itemData":{"id":0,"status":"primera","text":"Task" + newItemsCount,"tags":"task" + newItemsCount,"color":"#5dc3f0"}};
    // $('#nombre').jqxKanban('addItem', {status: "primera", text: "Task" + newItemsCount, tags: "task" + newItemsCount, color: "#5dc3f0"});
     newTask++;
@@ -93,23 +94,49 @@ nuevaTareaTR= function(){
     //stompClient.send("/topic/", {},JSON.stringify(datos));
 }
 
+function nuevaTareaPop() {
+        open('popup.html','','top=450,left=450,width=450,height=400') ;
+ } 
+
+nuevaTarea= function() {
+    var titulo=$("#nombreTarea").val();
+    var descripcion=$("#descripcionTarea").val();
+    var prioridad=$("#prioridadTarea").val();
+    var col;
+    
+    if(prioridad=="alto"){
+        col="#DC143C";
+    }else if(prioridad=="medio"){
+        col="#2980b9";
+    }else {
+        col="#008000";
+    }
+    var datos={"newColumn":{"dataField":"primera"},"oldColumn":{"dataField":"primera"},"itemData":{"id":newTask,"status":"primera","text":titulo,"tags":descripcion,"color":col}};
+    stompClient.send("/topic/", {},JSON.stringify(datos));
+    console.info(prioridad);
+    newTask++;
+ };
+
+
+
+
 actualizadorTableros= function(){
     $("#tableros").empty();
     $.get("/tableros/",function(tableros){
         tablerosDisponibles=tableros;
     }).then(pintaTableros);
-}
+};
 
 pintaTableros = function(){
     for(var i = 0; i<=tablerosDisponibles.length; i++){         
         $("#tableros").append("<option value="+i+">"+tablerosDisponibles[i].idTablero+"</option>");
     }
-}
+};
 
 cambiarTablero= function(id){
     $.get("/tableros/"+id,function(tareas){});
     
-}
+};
 
 function tablero() {
         open("tableroView.html","_self");
@@ -121,12 +148,12 @@ function poupnuevotablero(){
 crearTablero = function(){
     tableroId=$("#nombreT").val();
     console.log("/tableros/"+tableroId);
-    putTablero(tableroId, []);
-    
-}
-function putTablero(idT,tar){
+    putTablero(tableroId);
+};
+
+function putTablero(idT){
      console.log("entro")   
-     var info=  tar;
+     var info= {"idTablero":idT};
      return $.ajax({url: "/tableros/"+idT, 
          type: 'PUT' ,
          data: JSON.stringify(info),
