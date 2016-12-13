@@ -57,7 +57,6 @@ public class TableroController {
 
     @RequestMapping(path = "/{idT}/tareas", method = RequestMethod.POST)
     public ResponseEntity<?> postTablero(@PathVariable String idT, @RequestBody ArrayList<Tarea> table) {
-        System.out.println("LLEGO AL POST ");
         manejador.actualizarTablero(idT,table);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

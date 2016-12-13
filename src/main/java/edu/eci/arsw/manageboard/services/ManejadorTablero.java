@@ -7,13 +7,8 @@ package edu.eci.arsw.manageboard.services;
 
 import edu.eci.arsw.manageboard.logic.Tablero;
 import edu.eci.arsw.manageboard.logic.Tarea;
-import edu.eci.arsw.manageboard.logic.Usuario;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.stereotype.Service;
 
 /**
@@ -48,13 +43,11 @@ public class ManejadorTablero {
     }
     
     public ArrayList<Tarea> getTarjetas(String id){
-        System.out.println("lo que tiene get Tareas: "+getTablero(id).getTareas().size());
         return getTablero(id).getTareas();
     }
     
     public void addTarea(String id, Tarea t){
         if (t.getExiste()){
-            System.out.println("ENTRO AL IF");
             getTablero(id).agregarTarea(t);
         } 
     }

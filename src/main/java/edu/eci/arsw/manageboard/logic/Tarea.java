@@ -13,16 +13,6 @@ import java.util.Date;
  *
  */
 public class Tarea {
-    /*
-    private ArrayList<String> comentarios;
-    private ArrayList<String>criterios;
-    private String nombre;
-    private int calificacion=0;
-    private boolean toDo=true;
-    private boolean aprobado=false;
-    private String estado;
-    */
-    
     private int idTarea;
     private boolean aprobado;
     private boolean existe;
