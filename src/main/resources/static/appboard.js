@@ -117,7 +117,7 @@ nuevaTarea= function() {
     $.ajax({url: "/tableros/" + idT + "/tareas",
         type: 'PUT',
          data: JSON.stringify(info),
-         contentType: "application/json"}).then(connect.then(traeElementos));
+         contentType: "application/json"}).then(connect).then(traeElementos);
  };
 
 /*
