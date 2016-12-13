@@ -69,6 +69,7 @@ function connect() {
             });
         });
     });
+    return true;
 };
 
 function disconnect() {
@@ -93,7 +94,7 @@ function Tarea (id,c,t,de,colo) {
 }
 
 nuevaTarea= function() {
-    connect();
+    
     idT =window.location.search.substr(1);
     console.info(idT);
     var titulo=$("#nombreTarea").val();
@@ -116,7 +117,7 @@ nuevaTarea= function() {
     $.ajax({url: "/tableros/" + idT + "/tareas",
         type: 'PUT',
          data: JSON.stringify(info),
-         contentType: "application/json"}).then(traeElementos);
+         contentType: "application/json"}).then(connect.then(traeElementos));
  };
 
 /*
