@@ -21,16 +21,16 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        //config.enableSimpleBroker("/topic");
+        config.enableSimpleBroker("/topic");
         System.out.println("Entro al broker");
-        config.enableStompBrokerRelay("/topic/").setRelayHost("35.165.45.233").setRelayPort(61613);
+        //config.enableStompBrokerRelay("/topic/").setRelayHost("35.165.45.233").setRelayPort(61613);
         config.setApplicationDestinationPrefixes("/app");
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        //registry.addEndpoint("/stompendpoint").withSockJS();
-        registry.addEndpoint("/stompendpoint").setAllowedOrigins("*").withSockJS();
+         registry.addEndpoint("/stompendpoint").withSockJS();
+        //registry.addEndpoint("/stompendpoint").setAllowedOrigins("*").withSockJS();
     }
 
 }
