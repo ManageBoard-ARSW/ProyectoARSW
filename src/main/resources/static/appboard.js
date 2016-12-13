@@ -225,7 +225,6 @@ $(document).ready(function () {
 
         var info = new Tarea(tarea.itemData.id, colu , tarea.itemData.text, tarea.itemData.tags, tarea.itemData.color);
 
-        
         $.get("/tableros/" + idT + "/tareas", function (tarjetas) {
             datos = tarjetas;
             for (var i = 0; i < datos.length; i++) {
