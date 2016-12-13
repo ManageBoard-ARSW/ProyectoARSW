@@ -29,37 +29,34 @@ and open the template in the editor.
             <nav>
                 
                 <img id="imag" src="http://image.flaticon.com/icons/svg/30/30803.svg"> <!--En src va la URI de la imagen-->
-                
+
                 
                 <ul id="tareas">
                   
                     <li id="#tarea">Home</li>
                 </ul>
 
-                <ul id="tareas"  >
-                 
-                    <li id="#tarea">Home</li>
-                </ul>
+ 
             </nav>
 
             <div id="datosPer">
-                <h1>Nombre del Empleado</h1>
                 
                 
-                
-                      
-                 <script>
-                     $.get("/usuario/" + sessionStorage.getItem('cc'), function (user) {  
-                        document.getElementById("datosPer").innerHTML = "<h1 >Bienvenido</h1>;"+user.nombre.toString() ;
-                        console.info(user);
-                     });
-                   
-                     //var doc = document.open("text/jefe.html","replace");
-                    // var  nombrei =user.nombre;
-                     
-                     
+                <script>
+                    $.get("/usuario/" + sessionStorage.getItem('cc'), function (user) {  
+                       document.getElementById("datosPer").innerHTML = "<h1>Nombre del Empleado</h1>;"+user.nombre.toString() ;
+          
+                    });
+                  
+                    //var doc = document.open("text/jefe.html","replace");
+                   // var  nombrei =user.nombre;
+                    
+                    
     
-                  </script>
+                 </script>
+                
+                <h2>  </h2>
+
                 
                 <h3>Nombre del proyecto actual</h3>
                 <h4>Nombre de la Empresa</h4>
@@ -83,8 +80,10 @@ and open the template in the editor.
                 
                 <tr>
                     <td>
+
                
                      </td>
+
 
                 <td>
               
