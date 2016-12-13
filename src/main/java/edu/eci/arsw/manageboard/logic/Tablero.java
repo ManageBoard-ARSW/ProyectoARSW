@@ -42,6 +42,10 @@ public class Tablero {
         System.out.println("Tamaño de las tareas del tablero: "+tareasTablero.size());
     }
     
+    public void actualizaTareas (ArrayList<Tarea> sa){
+        tareasTablero=sa;
+    }
+    
     public ArrayList<Tarea> getTareas (){
         return tareasTablero;
     }   

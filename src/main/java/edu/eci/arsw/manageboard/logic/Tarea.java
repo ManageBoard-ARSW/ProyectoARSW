@@ -31,7 +31,7 @@ public class Tarea {
     private String descripcion; //tags 
     private String criticidad; // hex -- codigo de color respecto a la importancia
     private Date fechaActual= new Date();
-    private int fecha=0;
+    private int fecha;
        
     /*
     @param id, columna, titulo, descripcion, criticidad

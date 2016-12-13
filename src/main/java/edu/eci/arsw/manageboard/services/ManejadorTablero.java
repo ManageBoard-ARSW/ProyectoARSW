@@ -56,8 +56,10 @@ public class ManejadorTablero {
         if (t.getExiste()){
             System.out.println("ENTRO AL IF");
             getTablero(id).agregarTarea(t);
-        }
-        
+        } 
     }
     
+    public void actualizarTablero(String id, ArrayList<Tarea> tablero){
+        getTablero(id).actualizaTareas(tablero);
+    }
 }
