@@ -22,9 +22,9 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
         //config.enableSimpleBroker("/topic");
-        config.enableStompBrokerRelay("/topic/").setRelayHost("35.165.45.233").setRelayPort(61613);
+        //config.enableStompBrokerRelay("/topic/").setRelayHost("35.165.45.233").setRelayPort(61613);
         config.setApplicationDestinationPrefixes("/app");
-        //config.enableStompBrokerRelay("/topic/").setRelayHost("zebra.rmq.cloudamqp.com").setRelayPort(61613).setClientLogin("ozwzvfvz").setClientPasscode("urtQt5O-tnaVSMXj1YpA3VyUg1pJ84Q7").setSystemLogin("ozwzvfvz").setSystemPasscode("urtQt5O-tnaVSMXj1YpA3VyUg1pJ84Q7").setVirtualHost("ozwzvfvz");
+        config.enableStompBrokerRelay("/topic/").setRelayHost("zebra.rmq.cloudamqp.com").setRelayPort(61613).setClientLogin("ozwzvfvz").setClientPasscode("urtQt5O-tnaVSMXj1YpA3VyUg1pJ84Q7").setSystemLogin("ozwzvfvz").setSystemPasscode("urtQt5O-tnaVSMXj1YpA3VyUg1pJ84Q7").setVirtualHost("ozwzvfvz");
         
     }
 
