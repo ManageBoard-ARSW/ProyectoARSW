@@ -70,31 +70,17 @@ function connect() {
                 dataType: "array",
                 dataFields: fields
             }
-            
-            var staff = [
-                {id: 0, name: "No name" , common: true},
-                {id: 3, name: "Steven Buchanan"}
-            ];    
+              
     
-            /*
-             * Se captura el movimiento de una tarea especifica y se actualiza en todos los tableros
-             * de los usuarios suscritos a dicho tablero
-
-            $('#nombre').on('itemMoved', function (event) {
-                console.log(event);
-                var args = event.args;  //Filtro los datos necesarios para tratar la tarea
-                stompClient.send("/topic/", {},JSON.stringify(args));
-            });
-            */
             var dataAdapter = new $.jqx.dataAdapter(source);
 
             $('#nombre').jqxKanban({
                 width: 750,
                 height: 650,
                 source: dataAdapter ,  //  tareas
-                columns: columnas,
-                resources: staff
+                columns: columnas
             });
+
                         
             /*
             console.log(data+"Lo que le llega al suscribir");
@@ -306,6 +292,29 @@ loadxx=function(){
 
 $(document).ready(function () {
    
+    var source = {
+        localData: [],
+        dataType: "array",
+        dataFields: fields
+    };
+
+    var dataAdapter = new $.jqx.dataAdapter(source);
+
+    $('#nombre').jqxKanban({
+        width: 750,
+        height: 650,
+        source: dataAdapter, //  tareas
+        columns: columnas,
+    });
+
+    $('#nombre').on('itemMoved', function (event) {
+        var args = event.args;  //Filtro los datos necesarios para tratar la tarea
+        console.lo("---------------");
+        console.log(event);
+        
+        stompClient.send("/topic/", {}, JSON.stringify(args));
+    });
+    
     /*
     var staff = [
         {id: 0, name: "No name" , common: true},

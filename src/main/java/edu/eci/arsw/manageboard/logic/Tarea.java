@@ -5,10 +5,7 @@
  */
 package edu.eci.arsw.manageboard.logic;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 
 /**
@@ -35,15 +32,7 @@ public class Tarea {
     private String criticidad; // hex -- codigo de color respecto a la importancia
     private Date fechaActual= new Date();
     private int fecha=0;
-    /*
-    localData: [
-                  { id: "1161", state: "done", label: "Combine Orders", tags: "orders, combine", hex: "#5dc3f0" },
-                  { id: "1645", state: "work", label: "Change Billing Address", tags: "billing", hex: "#f19b60"},
-                  { id: "9213", state: "new", label: "One item added to the cart", tags: "cart", hex: "#5dc3f0"},
-                  { id: "6546", state: "done", label: "Edit Item Price", tags: "price, edit", hex: "#5dc3f0"},
-                  { id: "9034", state: "done", label: "Login 404 issue", tags: "issue, login", hex: "#6bbd49" }
-         ],
-    */    
+       
     /*
     @param id, columna, titulo, descripcion, criticidad
     */
@@ -71,6 +60,10 @@ public class Tarea {
     
     public boolean getExiste(){
         return this.existe;    
+    }
+    
+    public int getFecha(){
+        return this.fecha;
     }
     
     public int getIdTarea() {
@@ -108,68 +101,4 @@ public class Tarea {
     public void setCriticidad(String criticidad) {
         this.criticidad = criticidad;
     }
-        
-    /*
-    public void setIdTarea(int idTarea) {
-        this.idTarea = idTarea;
-    }
-
-    public int getCalificacion() {
-        return calificacion;
-    }
-
-    public void setCalificacion(int calificacion) {
-        this.calificacion = calificacion;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-    
-    public int getId(){
-        return idTarea;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-    
-    void agregarCriterios(String c) {
-        criterios.add(c);
-    }
-
-    void agregarComentario(String c) {
-        comentarios.add(c);
-    }
-
-    public ArrayList<String> getComentarios() {
-        return comentarios;
-    }
-
-    public ArrayList<String> getCriterios() {
-        return criterios;
-    }
-
-    public boolean isAprobado() {
-        return aprobado;
-    }
-
-    public void setAprobado(boolean a) {
-        this.aprobado = a;
-    }
-    
-    public boolean getToDo(){
-        return toDo;
-    }
-    
-    public void setToDo(boolean t){
-        toDo = t;
-    }
-    */
-
- 
 }

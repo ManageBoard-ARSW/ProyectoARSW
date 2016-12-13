@@ -1,6 +1,7 @@
 var usuario;
 habilidades=[];
     //console.info(text);
+    
 nuevoUsuario = function () {
     var tipo=$("#tipo").val();
     var c=$("#cedula").val();
