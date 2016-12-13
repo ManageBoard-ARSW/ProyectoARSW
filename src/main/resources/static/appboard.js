@@ -92,7 +92,6 @@ function Tarea (id,c,t,de,colo) {
       this.existe=true;
 }
 
-
 nuevaTarea= function() {
     connect();
     idT =window.location.search.substr(1);
