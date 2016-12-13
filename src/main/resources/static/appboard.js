@@ -3,6 +3,7 @@ var newTask = 0;
 var tableroId;
 var tablerosDisponibles = [];
 var tableroActual;
+var idT;
 
 // Caracteristacas basicas de creacion de tablero
 var fields = [
@@ -13,13 +14,25 @@ var fields = [
     {name: "color", map: "hex", type: "string"}
 ];
 
-var source ={localData: [], dataType: "array", dataFields: fields};   
-    
+//var source ={localData: [], dataType: "array", dataFields: fields};   
+var source ={};
+/*var source ={
+             localData: [
+             { id: "1161", state: "primera", label: "Combine Orders", tags: "orders, combine", hex: "#5dc3f0" },
+             { id: "1645", state: "primera", label: "Change Billing Address", tags: "billing", hex: "#f19b60"},
+             { id: "9213", state: "primera", label: "One item added to the cart", tags: "cart", hex: "#5dc3f0"},
+             { id: "6546", state: "segunda", label: "Edit Item Price", tags: "price, edit", hex: "#5dc3f0"},
+             { id: "9034", state: "primera", label: "Login 404 issue", tags: "issue, login", hex: "#6bbd49" }
+             ],
+             dataType: "array",
+             dataFields: fields
+      };*/
+             
 var columnas = [
     {text: "To Do", dataField: "primera", access: "none", maxItems: 20},
     {text: "Doing Developing", dataField: "segunda", access: "none", maxItems: 20},
     {text: "Doing Testing", dataField: "tercera", access: "none", maxItems: 20},
-    {text: "Done", dataField: "cuarta", access: "none", maxItems: 20}
+    {text: "Done", dataField: "cuarta", access: "none" , maxItems: 20}
 ];
 
 var tareas = [];
@@ -30,28 +43,59 @@ function connect() {
     stompClient = Stomp.over(socket);
      stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
-        
-        stompClient.subscribe('/topic/', function (data) {
-            console.log ("LLEGOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO al suscribir")
-            console.log(data.body);
+        console.log("EL IDT: "+idT);
+        stompClient.subscribe('/topic/tablero.'+idT, function (data) {
+//            var tarea = JSON.parse(data.body);
             var tareaId;
             var columnaNueva;
             var titu;
             var descrip;
             var color;
-            var localData=[];
+            var loca = [];
             tareas = JSON.parse(data.body);
             for (var i = 0; i < tareas.length; i++) {
-                 tareaId = tareas[i].idTarea;
-                 columnaNueva = tareas[i].columna;
-                 titu = tareas[i].titulo;
-                 descrip = tareas[i].descripcion;
-                 color = tareas[i].criticidad;
-                 
-                 
+                tareaId = tareas[i].idTarea;
+                columnaNueva = tareas[i].columna;
+                titu = tareas[i].titulo;
+                descrip = tareas[i].descripcion;
+                color = tareas[i].criticidad;
+                //console.log("Tarea id " + tareaId + " Titulo: " + titu + " Col Nueva: " + columnaNueva + " Descrip: " + descrip + "------------");
+                a = {id: tareaId, state: columnaNueva, label: titu, tags: descrip, hex: color};
+                loca.push(a);
             }
             
-            console.log ("Esto es lo que llevo al suscribir"+tareas[0].titulo);
+            
+            source = {
+                localData: loca,
+                dataType: "array",
+                dataFields: fields
+            }
+            
+            var staff = [
+                {id: 0, name: "No name" , common: true},
+                {id: 3, name: "Steven Buchanan"}
+            ];    
+    
+            /*
+             * Se captura el movimiento de una tarea especifica y se actualiza en todos los tableros
+             * de los usuarios suscritos a dicho tablero
+
+            $('#nombre').on('itemMoved', function (event) {
+                console.log(event);
+                var args = event.args;  //Filtro los datos necesarios para tratar la tarea
+                stompClient.send("/topic/", {},JSON.stringify(args));
+            });
+            */
+            var dataAdapter = new $.jqx.dataAdapter(source);
+
+            $('#nombre').jqxKanban({
+                width: 750,
+                height: 650,
+                source: dataAdapter ,  //  tareas
+                columns: columnas,
+                resources: staff
+            });
+                        
             /*
             console.log(data+"Lo que le llega al suscribir");
             var tarea = JSON.parse(data.body); //Tarea que fue movida
@@ -78,9 +122,7 @@ function connect() {
              };
              
              var dataAdapter = new $.jqx.dataAdapter(source);
-             
-            
-            
+                         
             //Re pintada de la tarea modificada
             $('#nombre').jqxKanban('addItem', {status: columnaNueva, text: titulo, tags:descripcion, color: criticidad});  
             
@@ -96,7 +138,7 @@ function disconnect() {
     if (stompClient != null) {
         stompClient.disconnect();
     }
-    setConnected(false);
+    
     console.log("Disconnected");
 }
 
@@ -115,7 +157,8 @@ function Tarea (id,c,t,de,colo) {
 
 
 nuevaTarea= function() {
-    var idT =window.location.search.substr(1);
+    connect();
+    idT =window.location.search.substr(1);
     console.info(idT);
     var titulo=$("#nombreTarea").val();
     var descripcion=$("#descripcionTarea").val();
@@ -137,8 +180,7 @@ nuevaTarea= function() {
     
     var info = new Tarea(newTask, "primera", titulo, descripcion, col);
     newTask++;
-    console.info("Nueva tarea antes del PUT el id que jode: "+idT);
-    return $.ajax({url: "/tableros/"+idT+"/tareas", 
+    $.ajax({url: "/tableros/"+idT+"/tareas", 
          type: 'PUT' ,
          data: JSON.stringify(info),
          contentType: "application/json"}).then(traeElementos);
@@ -169,16 +211,18 @@ nuevaTarea= function() {
  * Trae la lista de tareas del tablero con id: idT 
  * y luego lo replica para todos los suscritos a ese tablero
  */
-traeElementos = function(){
-    idT="prueba";
-    //idT=sessionStorage.getItem('identificadorTablero');
-    $.get("/tableros/"+idT+"/tareas",function(tarjetas){
-        datos=tarjetas;
-    }).then(stompClient.send("/topic/", {},JSON.stringify(datos)));
+traeElementos = function () {
+    var datos;
+    $.get("/tableros/" + idT + "/tareas", function (tarjetas) {
+        datos = tarjetas;
+        stompClient.send("/topic/tablero."+idT, {}, JSON.stringify(datos));
+    });
+    console.log(datos+" estos son los datos");
+    
 };
 
 actualizadorTableros= function(){
-    $("#tableros").empty();
+    //$("#tableros").empty();
     $.get("/tableros/",function(tableros){
         tablerosDisponibles=tableros;
     }).then(pintaTableros);
@@ -188,19 +232,27 @@ actualizadorTableros= function(){
  * Pinta los tablero de las opciones 
  */
 pintaTableros = function(){
-    for(var i = 0; i<=tablerosDisponibles.length; i++){         
-        $("#tableros").append("<option value="+i+">"+tablerosDisponibles[i].idTablero+"</option>");
+    console.log("dentro de pinta tablero longitud: "+tablerosDisponibles.length);
+    for(var i = 0; i<tablerosDisponibles.length; i++){         
+        $("#tableros").append("<option value="+tablerosDisponibles[i].idTablero+">"+tablerosDisponibles[i].idTablero+"</option>");
     
     }
 };
 
 cambiarTablero= function(id){
-    $.get("/tableros/"+id,function(tareas){});
-    console.info(id);
-    tableroActual=tablerosDisponibles[id].idTablero;
+    $.get("/tableros/"+id,function(va){
+        idT=id;
+    });
     
-   
-    
+    console.info("------------------------------------------id: "+id);
+    for(var i=0; i<tablerosDisponibles.length; i++){
+        if(tablerosDisponibles[i].idTablero==id){
+            tableroActual=tablerosDisponibles[i].idTablero;
+        }
+    }
+    disconnect();
+    connect();
+      
 };
 
 function tablero() {
@@ -212,7 +264,6 @@ function poupnuevotablero(){
 
 crearTablero = function(){
     tableroId=$("#nombreT").val();
-    sessionStorage.setItem('identificadorTablero',tableroId); 
     putTablero(tableroId);
 };
 
@@ -225,31 +276,61 @@ function putTablero(idT){
 };
 
 
-
+/*
+loadxx=function(){
+    
+    var source ={
+             localData: [
+             { id: "1161", state: "primera", label: "Combine Orders", tags: "orders, combine", hex: "#5dc3f0" },
+             { id: "1645", state: "primera", label: "Change Billing Address", tags: "billing", hex: "#f19b60"},
+             { id: "9213", state: "primera", label: "One item added to the cart", tags: "cart", hex: "#5dc3f0"},
+             { id: "6546", state: "segunda", label: "Edit Item Price", tags: "price, edit", hex: "#5dc3f0"},
+             { id: "9034", state: "primera", label: "Login 404 issue", tags: "issue, login", hex: "#6bbd49" }
+             ],
+             dataType: "array",
+             dataFields: fields
+      };
+      
+       var dataAdapter = new $.jqx.dataAdapter(source);
+    
+    $('#nombre').jqxKanban({
+        width: 750,
+        height: 650,
+        source: dataAdapter ,  //  tareas
+        columns: columnas,
+        resources: staff
+    });   
+    
+}
+*/
 
 $(document).ready(function () {
-    connect();
-    
+   
+    /*
     var staff = [
         {id: 0, name: "No name" , common: true},
         {id: 3, name: "Steven Buchanan"}
     ];    
-    
+    */
     /*
      * Se captura el movimiento de una tarea especifica y se actualiza en todos los tableros
      * de los usuarios suscritos a dicho tablero
      */
+    /*
     $('#nombre').on('itemMoved', function (event) {
         console.log(event);
         var args = event.args;  //Filtro los datos necesarios para tratar la tarea
         stompClient.send("/topic/", {},JSON.stringify(args));
     });
+    
     var dataAdapter = new $.jqx.dataAdapter(source);
+    
     $('#nombre').jqxKanban({
         width: 750,
         height: 650,
-        source: tareas,  // dataAdapter
+        source: dataAdapter ,  //  tareas
         columns: columnas,
         resources: staff
     });
+    */
 });

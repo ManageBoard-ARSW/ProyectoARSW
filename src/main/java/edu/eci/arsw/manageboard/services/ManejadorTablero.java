@@ -48,17 +48,16 @@ public class ManejadorTablero {
     }
     
     public ArrayList<Tarea> getTarjetas(String id){
+        System.out.println("lo que tiene get Tareas: "+getTablero(id).getTareas().size());
         return getTablero(id).getTareas();
     }
     
     public void addTarea(String id, Tarea t){
-        System.out.println("esta en el add Tarea: "+t.getExiste());
-        System.out.println("esta en el add Tarea ID del tablero: "+id);
-        System.out.println("esta en el add Tarea el GETTABLERO: "+getTablero(id));
         if (t.getExiste()){
+            System.out.println("ENTRO AL IF");
             getTablero(id).agregarTarea(t);
         }
-         
+        
     }
     
 }

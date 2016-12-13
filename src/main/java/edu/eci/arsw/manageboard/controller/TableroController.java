@@ -51,7 +51,6 @@ public class TableroController {
     
     @RequestMapping(path = "/{idT}/tareas", method = RequestMethod.PUT)
     public ResponseEntity<?> putTarea(@PathVariable String idT, @RequestBody Tarea t) throws ExcepcionTablero {
-        System.out.println("Entro al PUT DE TAREA");
         manejador.addTarea(idT,t);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

@@ -37,7 +37,9 @@ public class Tablero {
     }
     
     public void agregarTarea (Tarea tata){
+        System.out.println("Llego hasta agregar tarea con: "+tata.getTitulo());
         tareasTablero.add(tata);
+        System.out.println("Tamaño de las tareas del tablero: "+tareasTablero.size());
     }
     
     public ArrayList<Tarea> getTareas (){
